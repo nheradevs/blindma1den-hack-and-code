@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="app.t.track">IoT &amp; Mobile Carnage — Blindma1den Hack&amp;Code</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/i18n-app.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body class="app-body">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <!--
+    PROTOTYPE: static pages with sample data. In production every /app/ page must be served only
+    after a server-side session check (never rely on JavaScript to protect these pages).
+  -->
+  <div class="app" data-app>
+    <header class="app-top">
+      <button class="icon-btn sb-toggle" type="button" aria-controls="app-sidebar" aria-expanded="true" data-sb-toggle
+              data-i18n-attr="aria-label:app.menu" aria-label="Main menu"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#menu"/></svg></button>
+      <a class="logo app-logo" href="index.html"><img src="../assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:app.homeAlt"></a>
+
+      <form class="app-search" role="search" action="search.html" method="get">
+        <label class="sr-only" for="app-q" data-i18n="app.search.label">Search missions, tracks and write-ups</label>
+        <svg class="i search-icon" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg>
+        <input id="app-q" type="search" name="q" maxlength="100" autocomplete="off" spellcheck="false"
+               placeholder="Search missions, tracks, write-ups" data-i18n-attr="placeholder:app.search.ph">
+        <kbd aria-hidden="true">/</kbd>
+      </form>
+
+      <div class="top-actions">
+        <a class="icon-btn search-mobile" href="search.html" data-i18n-attr="aria-label:app.search.label" aria-label="Search missions, tracks and write-ups"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg></a>
+        <a class="icon-btn" href="../contact.html" data-i18n-attr="aria-label:app.help" aria-label="Help"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#help"/></svg></a>
+
+        <div class="menu-wrap">
+          <button class="icon-btn" type="button" aria-expanded="false" aria-controls="notif-panel" data-menu
+                  data-i18n-attr="aria-label:app.notif.btn" aria-label="Notifications, 2 unread"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#bell"/></svg><span class="dot" aria-hidden="true"></span></button>
+          <div class="popover" id="notif-panel" hidden>
+            <h2 class="popover-title" data-i18n="app.notif.title">Notifications</h2>
+            <ul class="notif-list">
+              <li><a href="arenas.html"><strong data-i18n="app.notif.n1h">Live Arena announced</strong><span data-i18n="app.notif.n1p">Registration opens soon. Warm up in The Gauntlet.</span></a></li>
+              <li><a href="briefings.html"><strong data-i18n="app.notif.n2h">New intel briefing</strong><span data-i18n="app.notif.n2p">A new incident analysis is out.</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <button class="avatar-btn" type="button" aria-expanded="false" aria-controls="user-menu" data-menu
+                  data-i18n-attr="aria-label:app.user.btn" aria-label="Account menu"><span class="avatar" aria-hidden="true">OP</span></button>
+          <div class="popover popover-user" id="user-menu" hidden>
+            <p class="user-name tbd">[OPERATOR]</p>
+            <p class="user-plan"><span data-i18n="app.user.plan">Plan:</span> Recruit</p>
+            <ul class="menu-list">
+              <li><a href="settings.html#profile"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#user"/></svg><span data-i18n="app.user.profile">Profile</span></a></li>
+              <li><a href="settings.html#security"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#shield"/></svg><span data-i18n="app.user.security">Security and MFA</span></a></li>
+              <li><a href="settings.html#plan"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#settings"/></svg><span data-i18n="app.user.settings">Settings</span></a></li>
+            </ul>
+            <div class="menu-lang">
+              <span data-i18n="lang.label">Language</span>
+              <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+                <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+              </div>
+            </div>
+            <form method="post" action="/api/auth/logout" data-logout>
+              <button class="menu-logout" type="submit"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span data-i18n="app.nav.logout">Disconnect</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="app-sidebar" id="app-sidebar" data-i18n-attr="aria-label:app.nav.label" aria-label="Platform">
+      <ul class="sb-list">
+        <li><a class="sb-link" href="index.html" data-tip="Home" data-i18n-attr="data-tip:app.nav.home"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#home"/></svg><span class="sb-label" data-i18n="app.nav.home">Home</span></a></li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-mission"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#command"/></svg><span data-i18n="app.nav.g.mission">Mission Control</span></p>
+          <ul aria-labelledby="sbg-mission">
+            <li><a class="sb-link" href="terminal.html" data-tip="Terminal" data-i18n-attr="data-tip:app.nav.terminal"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#terminal"/></svg><span class="sb-label" data-i18n="app.nav.terminal">Terminal</span></a></li>
+            <li><a class="sb-link" href="vectors.html" data-tip="Vectors" data-i18n-attr="data-tip:app.nav.vectors"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#target"/></svg><span class="sb-label" data-i18n="app.nav.vectors">Vectors</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-combat"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#swords"/></svg><span data-i18n="app.nav.g.combat">Combat Zones</span></p>
+          <ul aria-labelledby="sbg-combat">
+            <li><a class="sb-link" href="gauntlet.html" aria-current="page" data-tip="The Gauntlet" data-i18n-attr="data-tip:app.nav.gauntlet"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#gauntlet"/></svg><span class="sb-label" data-i18n="app.nav.gauntlet">The Gauntlet</span></a></li>
+            <li><a class="sb-link" href="arenas.html" data-tip="Live Arenas" data-i18n-attr="data-tip:app.nav.arenas"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#arena"/></svg><span class="sb-label" data-i18n="app.nav.arenas">Live Arenas</span></a></li>
+            <li><a class="sb-link" href="briefings.html" data-tip="Intel Briefings" data-i18n-attr="data-tip:app.nav.briefings"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#doc"/></svg><span class="sb-label" data-i18n="app.nav.briefings">Intel Briefings</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-system"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#device"/></svg><span data-i18n="app.nav.g.system">System</span></p>
+          <ul aria-labelledby="sbg-system">
+            <li><a class="sb-link" href="leaderboard.html" data-tip="Leaderboard" data-i18n-attr="data-tip:app.nav.leaderboard"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#trophy"/></svg><span class="sb-label" data-i18n="app.nav.leaderboard">Leaderboard</span></a></li>
+            <li><a class="sb-link" href="inventory.html" data-tip="Inventory" data-i18n-attr="data-tip:app.nav.inventory"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#backpack"/></svg><span class="sb-label" data-i18n="app.nav.inventory">Inventory</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#users"/></svg><span data-i18n="app.nav.g.squad">Squad</span></p>
+          <ul aria-labelledby="sbg-squad">
+            <li><a class="sb-link" href="squad.html" data-tip="Custom Arena" data-i18n-attr="data-tip:app.nav.squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#layers"/></svg><span class="sb-label" data-i18n="app.nav.squad">Custom Arena</span></a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="sb-bottom" method="post" action="/api/auth/logout" data-logout>
+        <button class="sb-link sb-logout" type="submit" data-tip="Disconnect" data-i18n-attr="data-tip:app.nav.logout"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span class="sb-label" data-i18n="app.nav.logout">Disconnect</span></button>
+      </form>
+    </nav>
+
+    <div class="sb-overlay" data-sb-overlay hidden></div>
+
+    <main id="main" class="app-main" tabindex="-1">
+      <nav class="breadcrumb-app" data-i18n-attr="aria-label:post.crumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="gauntlet.html">The Gauntlet</a></li>
+          <li><a href="track-iot-mobile.html" aria-current="page" data-i18n="t8.h">IoT &amp; Mobile Carnage</a></li>
+        </ol>
+      </nav>
+
+      <header class="page-head">
+        <div>
+          <p class="eyebrow"><span data-i18n="t8.h">IoT &amp; Mobile Carnage</span> · <span data-i18n="app.tr.path">Path</span></p>
+          <h1 class="app-h1 tbd">[PATH NAME]</h1>
+          <p class="app-lead"><span class="tbd">[PATH DESCRIPTION]</span> <span data-i18n="app.tr.leadGeneric">Each mission unlocks the next. No skipping, no shortcuts.</span></p>
+        </div>
+        <dl class="mini-stats">
+          <div><dt data-i18n="app.tr.done">Completed</dt><dd>0 / 12</dd></div>
+          <div><dt data-i18n="app.tr.est">Estimated</dt><dd class="tbd">[N] h</dd></div>
+        </dl>
+      </header>
+
+      <ul class="legend" data-i18n-attr="aria-label:app.tr.legend" aria-label="Legend">
+        <li><span class="legend-hex is-done" aria-hidden="true"></span><span data-i18n="app.tr.s.done">Completed</span></li>
+        <li><span class="legend-hex is-current" aria-hidden="true"></span><span data-i18n="app.tr.s.current">In progress</span></li>
+        <li><span class="legend-hex is-open" aria-hidden="true"></span><span data-i18n="app.tr.s.open">Available</span></li>
+        <li><span class="legend-hex is-locked" aria-hidden="true"></span><span data-i18n="app.tr.s.locked">Locked</span></li>
+      </ul>
+
+      <!-- Skill tree. Semantically an ordered list (screen readers and mobile get a clear sequence);
+           on wide screens CSS places each node on the map and the SVG draws the connections. -->
+      <div class="tree">
+        <svg class="tree-edges" viewBox="0 0 680 1000" aria-hidden="true" preserveAspectRatio="xMidYMin meet"><path d="M340 80 V135 H170 V190"/><path d="M340 80 V135 H510 V190"/><path d="M170 190 V240 H340 V290"/><path d="M510 190 V240 H340 V290"/><path d="M340 290 V360 H170 V430"/><path d="M340 290 V390 H340 V490"/><path d="M340 290 V360 H510 V430"/><path d="M170 430 V540 H255 V650"/><path d="M340 490 V570 H255 V650"/><path d="M510 430 V540 H425 V650"/><path d="M255 650 V720 H340 V790"/><path d="M425 650 V720 H340 V790"/><path d="M340 790 V855 H190 V920"/><path d="M340 790 V855 H490 V920"/></svg>
+        <ol class="tree-list">
+          <li class="node node-recon is-open">
+            <a class="node-inner" href="mission-iot-mobile.html"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#play"/></svg><span class="node-label"><span class="tbd">[MISSION 01]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.open">Available</span></span></a>
+          </li>
+          <li class="node node-param is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 02]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 01]</span></span>
+          </li>
+          <li class="node node-auth is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 03]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 01]</span></span>
+          </li>
+          <li class="node node-xss is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 04]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 02] / [Mission 03]</span></span>
+          </li>
+          <li class="node node-csrf is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 05]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 04]</span></span>
+          </li>
+          <li class="node node-sqli is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 06]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 04]</span></span>
+          </li>
+          <li class="node node-idor is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 07]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 04]</span></span>
+          </li>
+          <li class="node node-lfi is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 08]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 05] / [Mission 06]</span></span>
+          </li>
+          <li class="node node-ssrf is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 09]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 07]</span></span>
+          </li>
+          <li class="node node-upload is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 10]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 08] / [Mission 09]</span></span>
+          </li>
+          <li class="node node-rce is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 11]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 10]</span></span>
+          </li>
+          <li class="node node-own is-locked">
+            <span class="node-inner"><svg class="hex" viewBox="0 0 100 115" aria-hidden="true"><polygon points="50,3 97,29.5 97,85.5 50,112 3,85.5 3,29.5"/></svg><svg class="i node-icon" aria-hidden="true"><use href="../assets/icons.svg#lock"/></svg><span class="node-label"><span class="tbd">[MISSION 12]</span></span>
+              <span class="sr-only">— <span data-i18n="app.tr.s.locked">Locked</span>. <span data-i18n="app.tr.requires">Requires:</span> [Mission 10]</span></span>
+          </li>
+        </ol>
+      </div>
+
+    </main>
+  </div>
+  <p class="toast" role="status" aria-live="polite" data-toast hidden></p>
+</body>
+</html>

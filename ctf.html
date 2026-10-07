@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="ctf.meta.title">CTF — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:ctf.meta.description" content="Capture the flag competitions built on real-world scenarios: Jeopardy, Attack-Defense, King of the Hill and Incident Response. Solo or as a squad.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="CTF — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="The scoreboard doesn't read your CV. Only your flags.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" aria-current="page" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero container" aria-labelledby="ctf-title">
+      <p class="eyebrow">CTF</p>
+      <h1 class="page-title" id="ctf-title">
+        <span class="line" data-i18n="ctf.h1a">The scoreboard doesn’t read your CV.</span>
+        <span class="line gradient-text" data-i18n="ctf.h1b">Only your flags.</span>
+      </h1>
+      <p class="page-lead" data-i18n="ctf.lead">Timed competitions built on real-world scenarios. Play solo or with your squad, against people who also chose not to sleep.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#events" data-i18n="ctf.jump.events">See upcoming events</a>
+        <a class="btn btn-ghost" href="#rules" data-i18n="ctf.jump.rules">Read the rules</a>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ UPCOMING EVENTS (placeholders) ============ -->
+    <section class="section container" id="events" aria-labelledby="events-title">
+      <div class="section-head">
+        <h2 class="h2" id="events-title" data-i18n="ctf.events.title">Upcoming events</h2>
+        <p class="section-sub" data-i18n="ctf.events.sub">Dates drop here first. Set a reminder, or find out from the scoreboard.</p>
+      </div>
+
+      <ul class="event-list">
+        <li class="event">
+          <p class="event-date tbd">[DATE]</p>
+          <div class="event-body">
+            <h3 class="tbd">[EVENT NAME]</h3>
+            <ul class="tags">
+              <li class="tag tag-grc">Jeopardy</li>
+              <li class="tag tag-blue" data-i18n="ctf.mode.both">Solo or squad</li>
+              <li class="tag tag-purple" data-i18n="ctf.dur.48">48 h</li>
+            </ul>
+          </div>
+          <p class="event-status" data-i18n="ctf.status.soon">Registration opens soon</p>
+        </li>
+        <li class="event">
+          <p class="event-date tbd">[DATE]</p>
+          <div class="event-body">
+            <h3 class="tbd">[EVENT NAME]</h3>
+            <ul class="tags">
+              <li class="tag tag-red">Attack-Defense</li>
+              <li class="tag tag-blue" data-i18n="ctf.mode.squad">Squads only</li>
+              <li class="tag tag-purple" data-i18n="ctf.dur.24">24 h</li>
+            </ul>
+          </div>
+          <p class="event-status" data-i18n="ctf.status.soon">Registration opens soon</p>
+        </li>
+        <li class="event">
+          <p class="event-date tbd">[DATE]</p>
+          <div class="event-body">
+            <h3 class="tbd">[EVENT NAME]</h3>
+            <ul class="tags">
+              <li class="tag tag-blue">Incident Response</li>
+              <li class="tag tag-blue" data-i18n="ctf.mode.solo">Solo</li>
+              <li class="tag tag-purple" data-i18n="ctf.dur.8">8 h</li>
+            </ul>
+          </div>
+          <p class="event-status" data-i18n="ctf.status.soon">Registration opens soon</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ FORMATS ============ -->
+    <section class="section container" aria-labelledby="formats-title">
+      <div class="section-head">
+        <h2 class="h2" id="formats-title" data-i18n="ctf.formats.title">Formats</h2>
+        <p class="section-sub" data-i18n="ctf.formats.sub">Different formats train different muscles. Most people are only good at one.</p>
+      </div>
+
+      <ul class="principles principles-2">
+        <li>
+          <h3>Jeopardy</h3>
+          <p data-i18n="ctf.f1.p">A board of challenges by category and difficulty. Pick your battles, manage your time, and don’t fall in love with the 500-point one.</p>
+        </li>
+        <li>
+          <h3>Attack-Defense</h3>
+          <p data-i18n="ctf.f2.p">Every team gets the same vulnerable services. Patch yours, exploit theirs. Both at the same time.</p>
+        </li>
+        <li>
+          <h3>King of the Hill</h3>
+          <p data-i18n="ctf.f3.p">Take a machine and hold it. Everyone else is trying to kick you out, and they know the same tricks.</p>
+        </li>
+        <li>
+          <h3>Incident Response</h3>
+          <p data-i18n="ctf.f4.p">Our own format: a live incident with logs, noise and a deadline. Points for what you find, and for what you contain.</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ HOW TO JOIN ============ -->
+    <section class="section container" aria-labelledby="join-title">
+      <div class="section-head">
+        <h2 class="h2" id="join-title" data-i18n="ctf.join.title">How to join</h2>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">01</span>
+          <h3 data-i18n="ctf.j1.h">Create your account</h3>
+          <p data-i18n="ctf.j1.p">Same account as the labs. One profile, one history.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">02</span>
+          <h3 data-i18n="ctf.j2.h">Register solo or as a squad</h3>
+          <p>
+            <span data-i18n="ctf.j2.p">Squads of up to</span>
+            <span class="tbd">[N]</span>
+            <span data-i18n="ctf.j2.p2">people. Pick your teammates carefully. You’ll be stuck with them for hours.</span>
+          </p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">03</span>
+          <h3 data-i18n="ctf.j3.h">Play the window</h3>
+          <p data-i18n="ctf.j3.p">The clock starts for everyone at once. Flags submitted after it ends don’t count, however good they are.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">04</span>
+          <h3 data-i18n="ctf.j4.h">Write it up</h3>
+          <p data-i18n="ctf.j4.p">The best write-ups get published in Briefing. Explaining what you did is half the skill.</p>
+        </li>
+      </ol>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ RULES ============ -->
+    <section class="section container" id="rules" aria-labelledby="rules-title">
+      <div class="section-head">
+        <h2 class="h2" id="rules-title" data-i18n="ctf.rules.title">The rules</h2>
+        <p class="section-sub" data-i18n="ctf.rules.sub">Few rules, strictly enforced. Breaking one means disqualification.</p>
+      </div>
+
+      <ol class="rules">
+        <li data-i18n="ctf.r1">Attack the challenges, never the platform infrastructure.</li>
+        <li data-i18n="ctf.r2">No sharing flags or solutions during the event, not even with friends on other teams.</li>
+        <li data-i18n="ctf.r3">No brute-forcing the flag submission. If you need to guess, you haven’t solved it.</li>
+        <li data-i18n="ctf.r4">Found a real bug in the platform? Report it through our disclosure policy. That earns you more respect than a flag.</li>
+        <li data-i18n="ctf.r5">One person, one account. Squads are declared before the event starts.</li>
+      </ol>
+      <p class="rules-more">
+        <a class="link-plain" href="disclosure.html" data-i18n="ctf.rules.disclosure">Vulnerability disclosure policy</a>
+        <span class="tbd" data-i18n="ctf.rules.full">[Full rules: coming soon]</span>
+      </p>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ HALL OF FAME (empty state) ============ -->
+    <section class="section container" aria-labelledby="hof-title">
+      <div class="section-head">
+        <h2 class="h2" id="hof-title" data-i18n="ctf.hof.title">Hall of fame</h2>
+      </div>
+      <div class="empty-state">
+        <p class="empty-title" data-i18n="ctf.hof.empty">No winners yet.</p>
+        <p data-i18n="ctf.hof.p">The first event’s rankings will show up here. The top spot is open, for now.</p>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ FAQ ============ -->
+    <section class="section container" aria-labelledby="faq-title">
+      <div class="section-head">
+        <h2 class="h2" id="faq-title" data-i18n="ctf.faq.title">Questions</h2>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary data-i18n="ctf.q1">Do I need a paid plan to play?</summary>
+          <p class="tbd" data-i18n="ctf.a1">[To be defined with pricing]</p>
+        </details>
+        <details>
+          <summary data-i18n="ctf.q2">I’m a junior. Should I even bother?</summary>
+          <p data-i18n="ctf.a2">Yes. Every event includes easy challenges, and you learn more losing one CTF than finishing ten tutorials.</p>
+        </details>
+        <details>
+          <summary data-i18n="ctf.q3">Are there prizes?</summary>
+          <p class="tbd" data-i18n="ctf.a3">[Announced with each event]</p>
+        </details>
+        <details>
+          <summary data-i18n="ctf.q4">Can my company run a private CTF?</summary>
+          <p>
+            <span data-i18n="ctf.a4">Yes. Private events for teams are part of</span>
+            <a class="link-plain" href="operations.html">Operations</a>.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta container" aria-labelledby="ctf-final">
+      <p class="final-text" id="ctf-final" data-i18n="ctf.final">Warm up before the event?</p>
+      <div class="final-actions">
+        <a class="btn btn-primary" href="gauntlet.html" data-i18n="ctf.final.labs">Train in The Gauntlet</a>
+        <a class="btn btn-ghost" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

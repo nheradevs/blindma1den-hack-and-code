@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="auth.meta.title">Access — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:auth.meta.description" content="Log in to Blindma1den Hack&amp;Code.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Access — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="Practice what you preach.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" aria-current="page" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="auth container" aria-labelledby="auth-title">
+      <h1 class="auth-title" id="auth-title">
+        <span class="line gradient-text" data-i18n="auth.h1a">Practice What</span>
+        <span class="line gradient-text" data-i18n="auth.h1b">You Preach.</span>
+      </h1>
+
+      <!--
+        THE SWITCH
+        Both forms live on this page. The tabs are real links (login.html / signup.html), so without
+        JavaScript they still work. With JavaScript (js/auth.js) a click swaps the panel without
+        reloading and updates the URL, so refresh, back button and shared links keep working.
+        login.html and signup.html are the same page; only the panel shown first changes.
+      -->
+      <nav class="auth-tabs" data-i18n-attr="aria-label:auth.tabs" aria-label="Account">
+        <a href="login.html" data-switch="login" aria-controls="panel-login" aria-current="page" data-i18n="auth.access">Access</a>
+        <span class="auth-sep" aria-hidden="true"></span>
+        <a href="signup.html" data-switch="register" aria-controls="panel-register" data-i18n="auth.enlist">Enlist</a>
+      </nav>
+
+      <div class="auth-card is-login" data-auth-card>
+        <!-- ===== ACCESS (login) ===== -->
+        <section class="auth-panel" id="panel-login" aria-labelledby="login-h">
+          <header class="auth-panel-head">
+            <p class="auth-kicker" data-i18n="auth.l.kicker">Returning operator</p>
+            <h2 class="auth-h2" id="login-h" tabindex="-1" data-i18n="auth.l.h">Welcome back.</h2>
+            <p class="auth-sub" data-i18n="auth.l.sub">Your labs are where you left them. Unfortunately, so are the incidents.</p>
+          </header>
+            <!--
+              SECURITY NOTES (frontend side, see js/auth.js for the backend contract)
+              - POST only, credentials never go in the URL.
+              - autocomplete attributes let password managers work (OWASP: never block them or paste).
+              - Errors are generic so nobody can tell whether an email is registered.
+            -->
+            <form class="auth-form" method="POST" action="/api/auth/login" novalidate data-auth="login">
+              <div class="field">
+                <label class="auth-label" for="login-email" data-i18n="auth.email">Email address</label>
+                <input class="auth-input" id="login-email" name="email" type="email" required
+                       autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254"
+                       placeholder="hacker@darknet.onion" aria-describedby="login-email-error">
+                <p class="field-error" id="login-email-error" hidden></p>
+              </div>
+
+              <div class="field">
+                <label class="auth-label" for="login-password" data-i18n="auth.password">Password</label>
+                <div class="pw">
+                  <input class="auth-input" id="login-password" name="password" type="password" required
+                         autocomplete="current-password" maxlength="128" aria-describedby="login-password-error login-caps">
+                  <button class="pw-toggle" type="button" aria-controls="login-password" aria-pressed="false"
+                          data-i18n-attr="aria-label:auth.show" aria-label="Show password">
+                    <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.8 17.8 0 0 1-3.2 4.2M6.6 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7a9.9 9.9 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
+                <p class="caps-warning" id="login-caps" hidden data-i18n="auth.caps">Caps Lock is on.</p>
+                <p class="field-error" id="login-password-error" hidden></p>
+              </div>
+
+              <p><a class="auth-link" href="reset.html" data-i18n="auth.forgot">Forgot? Reset your keys →</a></p>
+
+              <!-- Bot check slot: stays hidden unless the backend asks for it (e.g. after several failed attempts). -->
+              <div class="captcha-slot" data-captcha hidden></div>
+
+              <p class="auth-status" role="status" aria-live="polite" data-status hidden></p>
+
+              <button class="btn btn-primary btn-block" type="submit" data-submit data-i18n="auth.access">Access</button>
+
+              <p class="auth-alt">
+                <span data-i18n="auth.trouble">Having trouble logging in?</span>
+                <button class="link-button" type="button" data-magic data-i18n="auth.magic">Send magic link</button>
+              </p>
+            </form>
+        </section>
+
+        <!-- ===== ENLIST (register) ===== -->
+        <section class="auth-panel" id="panel-register" aria-labelledby="register-h" hidden>
+          <header class="auth-panel-head">
+            <p class="auth-kicker" data-i18n="auth.r.kicker">New recruit</p>
+            <h2 class="auth-h2" id="register-h" tabindex="-1" data-i18n="auth.r.h">Start your first shift.</h2>
+            <p class="auth-sub" data-i18n="auth.r.sub">An email and a password. That’s all it takes. The hard part comes later.</p>
+            <p class="auth-plan" data-plan-label hidden><span data-i18n="auth.r.plan">Plan selected:</span> <strong data-plan-name></strong></p>
+          </header>
+          <ul class="auth-perks">
+            <li data-i18n="auth.r.p1">Your progress across every track, in one place</li>
+            <li data-i18n="auth.r.p2">CTF registration, solo or with a squad</li>
+            <li data-i18n="auth.r.p3">Labs saved for your next desktop session</li>
+          </ul>
+            <!--
+              No "confirm password" field: the show/hide toggle covers typos (NIST SP 800-63B / OWASP),
+              and every extra field is friction. The email confirmation link covers the rest.
+            -->
+            <form class="auth-form" method="POST" action="/api/auth/register" novalidate data-auth="register">
+              <!-- Plan chosen on the pricing section (?plan=operator). auth.js only accepts known values. -->
+              <input type="hidden" name="plan" value="" data-plan>
+
+              <div class="field">
+                <label class="auth-label" for="signup-email" data-i18n="auth.email">Email address</label>
+                <input class="auth-input" id="signup-email" name="email" type="email" required
+                       autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254"
+                       placeholder="cyberninja@proton.me" aria-describedby="signup-email-error">
+                <p class="field-error" id="signup-email-error" hidden></p>
+              </div>
+
+              <div class="field">
+                <label class="auth-label" for="signup-password" data-i18n="auth.password">Password</label>
+                <div class="pw">
+                  <input class="auth-input" id="signup-password" name="password" type="password" required
+                         autocomplete="new-password" minlength="12" maxlength="128" data-strength
+                         data-i18n-attr="placeholder:auth.pw.placeholder" placeholder="A passphrase, not a word. Make it hurt."
+                         aria-describedby="signup-password-hint signup-password-error signup-caps">
+                  <button class="pw-toggle" type="button" aria-controls="signup-password" aria-pressed="false"
+                          data-i18n-attr="aria-label:auth.show" aria-label="Show password">
+                    <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.8 17.8 0 0 1-3.2 4.2M6.6 6.6C3.8 8.4 2 12 2 12s3.6 7 10 7a9.9 9.9 0 0 0 5.4-1.6M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
+                <div class="pw-meter" aria-hidden="true"><span data-meter></span></div>
+                <p class="auth-help" id="signup-password-hint" data-strength-hint data-i18n="auth.pw.rule">At least 12 characters. Spaces and any symbol allowed. Long beats complex.</p>
+                <p class="caps-warning" id="signup-caps" hidden data-i18n="auth.caps">Caps Lock is on.</p>
+                <p class="field-error" id="signup-password-error" hidden></p>
+              </div>
+
+              <!-- Bot check slot: stays hidden unless the backend asks for it. -->
+              <div class="captcha-slot" data-captcha hidden></div>
+
+              <p class="auth-status" role="status" aria-live="polite" data-status hidden></p>
+
+              <button class="btn btn-enlist btn-block" type="submit" data-submit data-i18n="auth.enlist">Enlist</button>
+
+              <p class="auth-legal">
+                <span data-i18n="auth.legal1">By enlisting you accept the</span>
+                <a class="auth-link" href="terms.html" data-i18n="auth.terms">Terms</a>
+                <span data-i18n="auth.legal2">and the</span>
+                <a class="auth-link" href="privacy.html" data-i18n="auth.privacy">Privacy Policy</a>.
+              </p>
+            </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

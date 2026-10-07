@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="ct.meta.title">Contact — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:ct.meta.description" content="Contact Blindma1den Hack&amp;Code: questions, pricing updates, write-ups and press. Companies and security reports have their own channels.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Contact — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="Write to us. A human will answer.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero container" aria-labelledby="ct-title">
+      <p class="eyebrow" data-i18n="f.contact">Contact</p>
+      <h1 class="page-title" id="ct-title">
+        <span class="line" data-i18n="ct.h1a">Write to us.</span>
+        <span class="line gradient-text" data-i18n="ct.h1b">A human will answer.</span>
+      </h1>
+      <p class="page-lead" data-i18n="ct.lead">Questions about the platform, pricing updates, write-ups or press. Pick the right door and you’ll get a faster answer.</p>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ ROUTING ============ -->
+    <section class="section container" aria-labelledby="ct-route-title">
+      <h2 class="sr-only" id="ct-route-title" data-i18n="ct.route.title">Other ways to reach us</h2>
+      <ul class="route-grid">
+        <li class="route-card">
+          <h3 data-i18n="ct.r1.h">Companies and teams</h3>
+          <p data-i18n="ct.r1.p">Training for your security team, private CTFs or purple team exercises.</p>
+          <a class="link-plain" href="operations.html#contact" data-i18n="ct.r1.a">Go to the Operations form</a>
+        </li>
+        <li class="route-card">
+          <h3 data-i18n="ct.r2.h">Found a vulnerability?</h3>
+          <p data-i18n="ct.r2.p">Don’t use this form. Security reports have their own channel and response times.</p>
+          <a class="link-plain" href="disclosure.html" data-i18n="ct.r2.a">Read the disclosure policy</a>
+        </li>
+        <li class="route-card">
+          <h3 data-i18n="ct.r3.h">Want to contribute?</h3>
+          <p data-i18n="ct.r3.p">Labs, translations or code. It’s an OWASP project, so contributions are welcome.</p>
+          <a class="link-plain" href="about.html#contribute" data-i18n="ct.r3.a">How to contribute</a>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ FORM (Netlify Forms) ============ -->
+    <section class="section container" id="form" aria-labelledby="ct-form-title">
+      <div class="section-head">
+        <h2 class="h2" id="ct-form-title" data-i18n="ct.form.title">Everything else</h2>
+        <p class="section-sub" data-i18n="ct.form.sub">We usually reply within a few business days.</p>
+      </div>
+
+      <!-- Netlify detects this form at deploy time (Site → Forms). "bot-field" is a honeypot. -->
+      <form class="form-grid" name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="sr-only">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+
+        <div class="field">
+          <label class="field-label" for="c-name" data-i18n="ops.f.name">Full name</label>
+          <input class="input" id="c-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="field-label" for="c-email" data-i18n="br.nl.label">Email</label>
+          <input class="input" id="c-email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field field-full">
+          <label class="field-label" for="c-topic" data-i18n="ct.f.topic">Topic</label>
+          <!-- contact.js preselects an option from ?topic=… (e.g. contact.html?topic=writeup) -->
+          <select class="input" id="c-topic" name="topic" required>
+            <option value="" data-i18n="ops.f.choose">Choose one</option>
+            <option value="general" data-i18n="ct.t.general">General question</option>
+            <option value="pricing" data-i18n="ct.t.pricing">Notify me about pricing</option>
+            <option value="account" data-i18n="ct.t.account">Account or billing</option>
+            <option value="writeup" data-i18n="ct.t.writeup">Submit a write-up</option>
+            <option value="press" data-i18n="ct.t.press">Press</option>
+            <option value="other" data-i18n="ct.t.other">Other</option>
+          </select>
+        </div>
+        <div class="field field-full">
+          <label class="field-label" for="c-msg" data-i18n="ct.f.msg">Message</label>
+          <textarea class="input textarea" id="c-msg" name="message" rows="6" required aria-describedby="c-msg-help"></textarea>
+          <p class="field-help" id="c-msg-help" data-i18n="ct.f.msgHelp">For write-ups, include a link to your draft (GitHub, Google Docs, etc.). Don’t include passwords or sensitive data.</p>
+        </div>
+        <div class="field-full form-actions">
+          <button class="btn btn-primary" type="submit" data-i18n="ops.f.submit">Send</button>
+          <p class="field-help">
+            <span data-i18n="ops.f.privacy">We’ll only use this information to reply to you. Read our</span>
+            <a class="link-plain" href="privacy.html" data-i18n="br.nl.privacyLink">privacy policy</a>.
+          </p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

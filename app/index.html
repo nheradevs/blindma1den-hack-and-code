@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="app.t.home">Home — Blindma1den Hack&amp;Code</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/i18n-app.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body class="app-body">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <!--
+    PROTOTYPE: static pages with sample data. In production every /app/ page must be served only
+    after a server-side session check (never rely on JavaScript to protect these pages).
+  -->
+  <div class="app" data-app>
+    <header class="app-top">
+      <button class="icon-btn sb-toggle" type="button" aria-controls="app-sidebar" aria-expanded="true" data-sb-toggle
+              data-i18n-attr="aria-label:app.menu" aria-label="Main menu"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#menu"/></svg></button>
+      <a class="logo app-logo" href="index.html"><img src="../assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:app.homeAlt"></a>
+
+      <form class="app-search" role="search" action="search.html" method="get">
+        <label class="sr-only" for="app-q" data-i18n="app.search.label">Search missions, tracks and write-ups</label>
+        <svg class="i search-icon" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg>
+        <input id="app-q" type="search" name="q" maxlength="100" autocomplete="off" spellcheck="false"
+               placeholder="Search missions, tracks, write-ups" data-i18n-attr="placeholder:app.search.ph">
+        <kbd aria-hidden="true">/</kbd>
+      </form>
+
+      <div class="top-actions">
+        <a class="icon-btn search-mobile" href="search.html" data-i18n-attr="aria-label:app.search.label" aria-label="Search missions, tracks and write-ups"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg></a>
+        <a class="icon-btn" href="../contact.html" data-i18n-attr="aria-label:app.help" aria-label="Help"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#help"/></svg></a>
+
+        <div class="menu-wrap">
+          <button class="icon-btn" type="button" aria-expanded="false" aria-controls="notif-panel" data-menu
+                  data-i18n-attr="aria-label:app.notif.btn" aria-label="Notifications, 2 unread"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#bell"/></svg><span class="dot" aria-hidden="true"></span></button>
+          <div class="popover" id="notif-panel" hidden>
+            <h2 class="popover-title" data-i18n="app.notif.title">Notifications</h2>
+            <ul class="notif-list">
+              <li><a href="arenas.html"><strong data-i18n="app.notif.n1h">Live Arena announced</strong><span data-i18n="app.notif.n1p">Registration opens soon. Warm up in The Gauntlet.</span></a></li>
+              <li><a href="briefings.html"><strong data-i18n="app.notif.n2h">New intel briefing</strong><span data-i18n="app.notif.n2p">A new incident analysis is out.</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <button class="avatar-btn" type="button" aria-expanded="false" aria-controls="user-menu" data-menu
+                  data-i18n-attr="aria-label:app.user.btn" aria-label="Account menu"><span class="avatar" aria-hidden="true">OP</span></button>
+          <div class="popover popover-user" id="user-menu" hidden>
+            <p class="user-name tbd">[OPERATOR]</p>
+            <p class="user-plan"><span data-i18n="app.user.plan">Plan:</span> Recruit</p>
+            <ul class="menu-list">
+              <li><a href="settings.html#profile"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#user"/></svg><span data-i18n="app.user.profile">Profile</span></a></li>
+              <li><a href="settings.html#security"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#shield"/></svg><span data-i18n="app.user.security">Security and MFA</span></a></li>
+              <li><a href="settings.html#plan"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#settings"/></svg><span data-i18n="app.user.settings">Settings</span></a></li>
+            </ul>
+            <div class="menu-lang">
+              <span data-i18n="lang.label">Language</span>
+              <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+                <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+              </div>
+            </div>
+            <form method="post" action="/api/auth/logout" data-logout>
+              <button class="menu-logout" type="submit"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span data-i18n="app.nav.logout">Disconnect</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="app-sidebar" id="app-sidebar" data-i18n-attr="aria-label:app.nav.label" aria-label="Platform">
+      <ul class="sb-list">
+        <li><a class="sb-link" href="index.html" aria-current="page" data-tip="Home" data-i18n-attr="data-tip:app.nav.home"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#home"/></svg><span class="sb-label" data-i18n="app.nav.home">Home</span></a></li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-mission"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#command"/></svg><span data-i18n="app.nav.g.mission">Mission Control</span></p>
+          <ul aria-labelledby="sbg-mission">
+            <li><a class="sb-link" href="terminal.html" data-tip="Terminal" data-i18n-attr="data-tip:app.nav.terminal"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#terminal"/></svg><span class="sb-label" data-i18n="app.nav.terminal">Terminal</span></a></li>
+            <li><a class="sb-link" href="vectors.html" data-tip="Vectors" data-i18n-attr="data-tip:app.nav.vectors"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#target"/></svg><span class="sb-label" data-i18n="app.nav.vectors">Vectors</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-combat"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#swords"/></svg><span data-i18n="app.nav.g.combat">Combat Zones</span></p>
+          <ul aria-labelledby="sbg-combat">
+            <li><a class="sb-link" href="gauntlet.html" data-tip="The Gauntlet" data-i18n-attr="data-tip:app.nav.gauntlet"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#gauntlet"/></svg><span class="sb-label" data-i18n="app.nav.gauntlet">The Gauntlet</span></a></li>
+            <li><a class="sb-link" href="arenas.html" data-tip="Live Arenas" data-i18n-attr="data-tip:app.nav.arenas"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#arena"/></svg><span class="sb-label" data-i18n="app.nav.arenas">Live Arenas</span></a></li>
+            <li><a class="sb-link" href="briefings.html" data-tip="Intel Briefings" data-i18n-attr="data-tip:app.nav.briefings"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#doc"/></svg><span class="sb-label" data-i18n="app.nav.briefings">Intel Briefings</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-system"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#device"/></svg><span data-i18n="app.nav.g.system">System</span></p>
+          <ul aria-labelledby="sbg-system">
+            <li><a class="sb-link" href="leaderboard.html" data-tip="Leaderboard" data-i18n-attr="data-tip:app.nav.leaderboard"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#trophy"/></svg><span class="sb-label" data-i18n="app.nav.leaderboard">Leaderboard</span></a></li>
+            <li><a class="sb-link" href="inventory.html" data-tip="Inventory" data-i18n-attr="data-tip:app.nav.inventory"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#backpack"/></svg><span class="sb-label" data-i18n="app.nav.inventory">Inventory</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#users"/></svg><span data-i18n="app.nav.g.squad">Squad</span></p>
+          <ul aria-labelledby="sbg-squad">
+            <li><a class="sb-link" href="squad.html" data-tip="Custom Arena" data-i18n-attr="data-tip:app.nav.squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#layers"/></svg><span class="sb-label" data-i18n="app.nav.squad">Custom Arena</span></a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="sb-bottom" method="post" action="/api/auth/logout" data-logout>
+        <button class="sb-link sb-logout" type="submit" data-tip="Disconnect" data-i18n-attr="data-tip:app.nav.logout"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span class="sb-label" data-i18n="app.nav.logout">Disconnect</span></button>
+      </form>
+    </nav>
+
+    <div class="sb-overlay" data-sb-overlay hidden></div>
+
+    <main id="main" class="app-main" tabindex="-1">
+      <header class="page-head">
+        <div>
+          <p class="eyebrow" data-i18n="app.nav.g.mission">Mission Control</p>
+          <h1 class="app-h1"><span data-i18n="app.home.h1">Welcome back,</span> <span class="tbd">[OPERATOR]</span></h1>
+          <p class="app-lead" data-i18n="app.home.lead">The incidents didn’t wait for you. Neither did the leaderboard.</p>
+        </div>
+        <p class="demo-badge" data-i18n="app.demo">Sample data</p>
+      </header>
+
+      <!-- CONTINUE OPS: the most important action on the page -->
+      <section class="card card-continue" aria-labelledby="continue-h">
+        <div class="continue-body">
+          <p class="eyebrow eyebrow-cyan" data-i18n="app.home.continue">Continue ops</p>
+          <h2 class="app-h2" id="continue-h">Recon: Surface Mapping</h2>
+          <p class="muted">Web App Exploits · Web Infiltrator · <span data-i18n="app.home.mission1">Mission 1 of 12</span></p>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40" data-i18n-attr="aria-label:app.home.progress" aria-label="Mission progress"><span class="pct-40"></span></div>
+          <p class="small"><span data-i18n="app.home.objectives">2 of 5 objectives</span> · 40%</p>
+        </div>
+        <div class="continue-actions">
+          <a class="btn btn-primary" href="mission-web-app-exploits.html"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#play"/></svg><span data-i18n="app.home.resume">Resume mission</span></a>
+          <a class="link-plain" href="track-web-app-exploits.html" data-i18n="app.home.viewTree">View the full path</a>
+        </div>
+      </section>
+
+      <section aria-labelledby="stats-h">
+        <h2 class="sr-only" id="stats-h" data-i18n="app.home.stats">Your numbers</h2>
+        <dl class="stats">
+          <div class="stat"><dt data-i18n="app.home.s1">Missions completed</dt><dd>0</dd></div>
+          <div class="stat"><dt data-i18n="app.home.s2">Current streak</dt><dd>3 <span class="unit" data-i18n="app.home.days">days</span></dd></div>
+          <div class="stat"><dt data-i18n="app.home.s3">Global rank</dt><dd data-i18n="app.home.unranked">Unranked</dd></div>
+          <div class="stat"><dt data-i18n="app.home.s4">Time in labs</dt><dd>2 h 15 min</dd></div>
+        </dl>
+      </section>
+
+      <div class="home-grid">
+        <section class="card" aria-labelledby="next-h">
+          <div class="card-head">
+            <h2 class="app-h2" id="next-h" data-i18n="app.home.next">Your next moves</h2>
+            <a class="link-plain" href="gauntlet.html" data-i18n="app.home.allTracks">All tracks</a>
+          </div>
+          <ul class="mission-list">
+            <li class="mission-row">
+              <div>
+                <h3 class="app-h3"><a href="mission-network-pivoting.html">Lobby Camera</a></h3>
+                <p class="small muted">Network Pivoting · Junior · ~40 min</p>
+              </div>
+              <ul class="tags"><li class="tag tag-red">Red</li></ul>
+            </li>
+            <li class="mission-row">
+              <div>
+                <h3 class="app-h3"><a href="mission-malware-forensics.html">Ransom Note Triage</a></h3>
+                <p class="small muted">Malware &amp; Forensics · Junior · ~50 min</p>
+              </div>
+              <ul class="tags"><li class="tag tag-blue">Blue</li></ul>
+            </li>
+            <li class="mission-row">
+              <div>
+                <h3 class="app-h3"><a href="mission-cloud-nightmares.html">Leaky Bucket</a></h3>
+                <p class="small muted">Cloud Nightmares · Junior · ~35 min</p>
+              </div>
+              <ul class="tags"><li class="tag tag-red">Red</li><li class="tag tag-blue">Blue</li></ul>
+            </li>
+          </ul>
+        </section>
+
+        <div class="stack">
+          <section class="card" aria-labelledby="arena-h">
+            <p class="eyebrow" data-i18n="app.nav.arenas">Live Arenas</p>
+            <h2 class="app-h2" id="arena-h"><a href="arena.html" class="tbd">[EVENT NAME]</a></h2>
+            <p class="small muted"><span class="tbd">[DATE]</span> · Jeopardy · 48 h</p>
+            <a class="btn btn-ghost" href="arena.html" data-i18n="app.home.arenaCta">See the arena</a>
+          </section>
+          <section class="card" aria-labelledby="intel-h">
+            <p class="eyebrow" data-i18n="app.nav.briefings">Intel Briefings</p>
+            <h2 class="app-h2" id="intel-h" data-i18n="app.home.intel">Latest intel</h2>
+            <ul class="link-list">
+              <li><a href="../post.html" class="tbd">[POST TITLE]</a></li>
+              <li><a href="../post.html" class="tbd">[POST TITLE]</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  <p class="toast" role="status" aria-live="polite" data-toast hidden></p>
+</body>
+</html>

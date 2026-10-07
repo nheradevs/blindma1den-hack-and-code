@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="ab.meta.title">About — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:ab.meta.description" content="Why Blindma1den Hack&amp;Code exists, the team behind it, and how to contribute to this OWASP project.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="About — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="We got tired of the bubble. So we built the opposite.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero container" aria-labelledby="ab-title">
+      <p class="eyebrow" data-i18n="f.about">About</p>
+      <h1 class="page-title" id="ab-title">
+        <span class="line" data-i18n="ab.h1a">We got tired of the bubble.</span>
+        <span class="line gradient-text" data-i18n="ab.h1b">So we built the opposite.</span>
+      </h1>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="section container split" aria-labelledby="ab-why-title">
+      <h2 class="h2" id="ab-why-title" data-i18n="ab.why.title">Why this exists</h2>
+      <div class="split-copy">
+        <p data-i18n="ab.why.p1">Most security training happens in perfect scenarios: one vulnerable machine, one intended path and a hint when you get stuck. Then the first real incident arrives and none of that applies.</p>
+        <p data-i18n="ab.why.p2">Real work is messy. Logs are incomplete, alerts lie, documentation is outdated and nobody tells you where to look. The people who do well are the ones who learned to work in that mess.</p>
+        <p data-i18n="ab.why.p3">Blindma1den Hack&amp;Code trains exactly that. It’s not comfortable, and it’s not supposed to be. This field rewards people who really want to be part of it, and we want to help them get there.</p>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ OWASP ============ -->
+    <section class="section container owasp" aria-labelledby="ab-owasp-title">
+      <!-- PLACEHOLDER: replace with the official OWASP project badge -->
+      <div class="owasp-badge" role="img" data-i18n-attr="aria-label:intel.owasp.badge" aria-label="Placeholder: OWASP project badge">
+        <span class="ph-label">OWASP · <span data-i18n="intel.owasp.badgeShort">Project badge</span></span>
+      </div>
+      <div>
+        <h2 class="h2" id="ab-owasp-title" data-i18n="intel.owasp.title">An OWASP project</h2>
+        <p class="section-sub" data-i18n="ab.owasp.p">Blindma1den Hack&amp;Code was selected as an OWASP project. It’s developed in the open, with the community, and follows the same security practices it teaches.</p>
+        <p class="section-sub"><a class="link-plain" href="https://owasp.org/projects/" data-i18n="ab.owasp.link">See the project page on OWASP</a> <span class="tbd">[URL]</span></p>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ TEAM (placeholders) ============ -->
+    <section class="section container" aria-labelledby="ab-team-title">
+      <div class="section-head">
+        <h2 class="h2" id="ab-team-title" data-i18n="ab.team.title">The team</h2>
+        <p class="section-sub" data-i18n="ab.team.sub">People who have spent real nights on real incidents.</p>
+      </div>
+      <ul class="team-grid">
+        <li class="person">
+          <div class="ph person-ph" role="img" data-i18n-attr="aria-label:ab.ph.photo" aria-label="Placeholder: team member photo"><span class="ph-label" data-i18n="ab.ph.photoShort">Photo</span></div>
+          <h3 class="tbd">[NAME]</h3>
+          <p class="tbd">[ROLE]</p>
+        </li>
+        <li class="person">
+          <div class="ph person-ph" role="img" data-i18n-attr="aria-label:ab.ph.photo" aria-label="Placeholder: team member photo"><span class="ph-label" data-i18n="ab.ph.photoShort">Photo</span></div>
+          <h3 class="tbd">[NAME]</h3>
+          <p class="tbd">[ROLE]</p>
+        </li>
+        <li class="person">
+          <div class="ph person-ph" role="img" data-i18n-attr="aria-label:ab.ph.photo" aria-label="Placeholder: team member photo"><span class="ph-label" data-i18n="ab.ph.photoShort">Photo</span></div>
+          <h3 class="tbd">[NAME]</h3>
+          <p class="tbd">[ROLE]</p>
+        </li>
+        <li class="person">
+          <div class="ph person-ph" role="img" data-i18n-attr="aria-label:ab.ph.photo" aria-label="Placeholder: team member photo"><span class="ph-label" data-i18n="ab.ph.photoShort">Photo</span></div>
+          <h3 class="tbd">[NAME]</h3>
+          <p class="tbd">[ROLE]</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ CONTRIBUTE ============ -->
+    <section class="section container" id="contribute" aria-labelledby="ab-contrib-title">
+      <div class="section-head">
+        <h2 class="h2" id="ab-contrib-title" data-i18n="ab.contrib.title">How to contribute</h2>
+        <p class="section-sub" data-i18n="ab.contrib.sub">You don’t need to be a senior to help. You need to be willing to do the work.</p>
+      </div>
+      <ul class="principles">
+        <li>
+          <h3 data-i18n="ab.c1.h">Design a lab</h3>
+          <p data-i18n="ab.c1.p">Turn an incident you lived (anonymized) into a scenario others can train on.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ab.c2.h">Write code</h3>
+          <p data-i18n="ab.c2.p">The platform is open source. Issues labeled for first-time contributors are a good place to start.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ab.c3.h">Translate</h3>
+          <p data-i18n="ab.c3.p">The site is in English and Spanish. Help us reach more people in their own language.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ab.c4.h">Publish write-ups</h3>
+          <p data-i18n="ab.c4.p">Explain how you solved a lab or a CTF challenge. The best ones get published in Briefing.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ab.c5.h">Report bugs</h3>
+          <p data-i18n="ab.c5.p">Platform bugs go to GitHub. Security vulnerabilities go through the disclosure policy.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ab.c6.h">Spread the word</h3>
+          <p data-i18n="ab.c6.p">Tell the people who are bored of clean labs. They’ll thank you later. Probably.</p>
+        </li>
+      </ul>
+      <p class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/" data-i18n="ab.contrib.github">View the repository</a>
+        <span class="tbd">[GITHUB REPO URL]</span>
+      </p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

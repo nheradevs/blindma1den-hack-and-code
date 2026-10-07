@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="intel.meta.title">Intelligence — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:intel.meta.description" content="How Blindma1den Hack&amp;Code trains you with real incidents, real malware in isolated labs and real time pressure.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Intelligence — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="Real incidents don't come with instructions. Neither do our labs.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" aria-current="page" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero container" aria-labelledby="intel-title">
+      <p class="eyebrow">Intelligence</p>
+      <h1 class="page-title" id="intel-title">
+        <span class="line" data-i18n="intel.h1a">Real incidents don’t come with instructions.</span>
+        <span class="line gradient-text" data-i18n="intel.h1b">Neither do our labs.</span>
+      </h1>
+      <p class="page-lead" data-i18n="intel.lead">Here’s how the platform works, why it feels uncomfortable on purpose, and what you walk away with when it’s over.</p>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ COMPARISON ============ -->
+    <section class="section container" aria-labelledby="cmp-title">
+      <div class="section-head">
+        <h2 class="h2" id="cmp-title" data-i18n="intel.cmp.title">The problem with the bubble</h2>
+        <p class="section-sub" data-i18n="intel.cmp.sub">Most training platforms are built to make you feel good. Real attackers didn’t get that memo.</p>
+      </div>
+
+      <table class="compare">
+        <caption class="sr-only" data-i18n="intel.cmp.caption">Typical training platforms compared with Blindma1den Hack&amp;Code</caption>
+        <thead>
+          <tr>
+            <td></td>
+            <th scope="col" data-i18n="intel.cmp.them">Typical platforms</th>
+            <th scope="col" class="compare-us">Blindma1den</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-i18n="intel.r1.h">Scenario</th>
+            <td><span class="cell-label" aria-hidden="true" data-i18n="intel.cmp.them">Typical platforms</span><span data-i18n="intel.r1.them">A clean box with one intended path.</span></td>
+            <td><span class="cell-label cell-label-us" aria-hidden="true">Blindma1den</span><span data-i18n="intel.r1.us">Messy environments with noise, false positives and dead ends.</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="intel.r2.h">Information</th>
+            <td><span class="cell-label" aria-hidden="true" data-i18n="intel.cmp.them">Typical platforms</span><span data-i18n="intel.r2.them">A hint button and a walkthrough.</span></td>
+            <td><span class="cell-label cell-label-us" aria-hidden="true">Blindma1den</span><span data-i18n="intel.r2.us">Partial logs, a vague ticket and the internet. Like a real shift.</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="intel.r3.h">Pressure</th>
+            <td><span class="cell-label" aria-hidden="true" data-i18n="intel.cmp.them">Typical platforms</span><span data-i18n="intel.r3.them">None. Take a week if you want.</span></td>
+            <td><span class="cell-label cell-label-us" aria-hidden="true">Blindma1den</span><span data-i18n="intel.r3.us">Time-boxed incidents where the impact grows while you think.</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="intel.r4.h">Malware</th>
+            <td><span class="cell-label" aria-hidden="true" data-i18n="intel.cmp.them">Typical platforms</span><span data-i18n="intel.r4.them">Simulated samples that behave nicely.</span></td>
+            <td><span class="cell-label cell-label-us" aria-hidden="true">Blindma1den</span><span data-i18n="intel.r4.us">Real samples, running in isolated labs.</span></td>
+          </tr>
+          <tr>
+            <th scope="row" data-i18n="intel.r5.h">Outcome</th>
+            <td><span class="cell-label" aria-hidden="true" data-i18n="intel.cmp.them">Typical platforms</span><span data-i18n="intel.r5.them">A badge for your profile.</span></td>
+            <td><span class="cell-label cell-label-us" aria-hidden="true">Blindma1den</span><span data-i18n="intel.r5.us">Skills you can defend in an interview, and in a breach.</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ HOW A MISSION WORKS ============ -->
+    <section class="section container" aria-labelledby="steps-title">
+      <div class="section-head">
+        <h2 class="h2" id="steps-title" data-i18n="intel.steps.title">How a mission works</h2>
+        <p class="section-sub" data-i18n="intel.steps.sub">Every lab follows the same cycle as a real incident. The only difference is that here, mistakes are cheap.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">01</span>
+          <h3 data-i18n="intel.s1.h">Briefing</h3>
+          <p data-i18n="intel.s1.p">You get what a real analyst gets: an alert, a vague ticket and, if you’re lucky, a nervous email from management.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">02</span>
+          <h3 data-i18n="intel.s2.h">Investigation</h3>
+          <p data-i18n="intel.s2.p">Logs, packet captures and memory dumps. Some of it matters, most of it doesn’t. Figuring out which is the job.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">03</span>
+          <h3 data-i18n="intel.s3.h">Response</h3>
+          <p data-i18n="intel.s3.p">Contain, eradicate and recover. Or exploit, pivot and persist, depending on your side. The clock keeps running either way.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">04</span>
+          <h3 data-i18n="intel.s4.h">Debrief</h3>
+          <p data-i18n="intel.s4.p">A breakdown of what you did, what you missed and how a senior would have approached it. This is where the learning sticks.</p>
+        </li>
+      </ol>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ PRINCIPLES ============ -->
+    <section class="section container" aria-labelledby="principles-title">
+      <div class="section-head">
+        <h2 class="h2" id="principles-title" data-i18n="intel.pr.title">What makes it real</h2>
+      </div>
+
+      <ul class="principles">
+        <li>
+          <h3 data-i18n="intel.p1.h">Real malware, safely isolated</h3>
+          <p>
+            <span data-i18n="intel.p1.p">Live samples run in sandboxed networks that never touch your machine or the internet.</span>
+            <a href="security.html" data-i18n="intel.p1.link">Read how we isolate them</a>
+          </p>
+        </li>
+        <li>
+          <h3 data-i18n="intel.p2.h">Noise on purpose</h3>
+          <p data-i18n="intel.p2.p">False positives, irrelevant logs and red herrings. Because that’s what a real SOC queue looks like.</p>
+        </li>
+        <li>
+          <h3 data-i18n="intel.p3.h">Time pressure</h3>
+          <p data-i18n="intel.p3.p">Incidents escalate while you work. You learn to prioritize, not just to solve.</p>
+        </li>
+        <li>
+          <h3 data-i18n="intel.p4.h">Research is part of the job</h3>
+          <p data-i18n="intel.p4.p">We don’t hand you the answer. We teach you where to look: documentation, CVE databases, OWASP resources and source code.</p>
+        </li>
+        <li>
+          <h3 data-i18n="intel.p5.h">Both sides of the fight</h3>
+          <p data-i18n="intel.p5.p">Red, blue and purple. Understanding the attacker makes you a better defender, and the other way around.</p>
+        </li>
+        <li>
+          <h3 data-i18n="intel.p6.h">Mistakes have consequences</h3>
+          <p data-i18n="intel.p6.p">Break production in a lab and you’ll see the impact. Better here than on a Monday at work.</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ OWASP ============ -->
+    <section class="section container owasp" aria-labelledby="owasp-title">
+      <!-- PLACEHOLDER: replace with the official OWASP project badge -->
+      <div class="owasp-badge" role="img" data-i18n-attr="aria-label:intel.owasp.badge" aria-label="Placeholder: OWASP project badge">
+        <span class="ph-label">OWASP · <span data-i18n="intel.owasp.badgeShort">Project badge</span></span>
+      </div>
+      <div>
+        <h2 class="h2" id="owasp-title" data-i18n="intel.owasp.title">An OWASP project</h2>
+        <p class="section-sub" data-i18n="intel.owasp.p">Blindma1den Hack&amp;Code was selected as an OWASP project. That means it’s built with and for the security community, and held to the same practices we teach.</p>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta container" aria-labelledby="intel-final">
+      <p class="final-text" id="intel-final" data-i18n="intel.final">Seen enough intel?</p>
+      <div class="final-actions">
+        <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        <a class="btn btn-ghost" href="gauntlet.html" data-i18n="intel.final.labs">Explore The Gauntlet</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

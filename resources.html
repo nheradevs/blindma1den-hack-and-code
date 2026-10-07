@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="rs.meta.title">Resources — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:rs.meta.description" content="The cybersecurity references we use every day: OWASP projects, MITRE ATT&amp;CK, NVD, GTFOBins and LOLBAS.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Resources — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="Where to look when nobody tells you.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero container" aria-labelledby="rs-title">
+      <p class="eyebrow" data-i18n="f.resources">Resources</p>
+      <h1 class="page-title" id="rs-title">
+        <span class="line" data-i18n="rs.h1a">Where to look</span>
+        <span class="line gradient-text" data-i18n="rs.h1b">when nobody tells you.</span>
+      </h1>
+      <p class="page-lead" data-i18n="rs.lead">Half of this job is knowing where to search. These are the references we use every day, and the ones our labs expect you to find on your own.</p>
+    </section>
+
+    <hr class="divider container">
+
+    <section class="section container" aria-labelledby="rs-owasp-title">
+      <div class="section-head">
+        <h2 class="h2" id="rs-owasp-title" data-i18n="rs.owasp.title">OWASP projects</h2>
+        <p class="section-sub" data-i18n="rs.owasp.sub">Free, community-built and used across the industry.</p>
+      </div>
+      <ul class="res-grid">
+        <li class="res-card">
+          <h3><a href="https://owasp.org/www-project-top-ten/" rel="noopener">OWASP Top 10 <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.o1">The most critical web application security risks. The starting point for everyone.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://cheatsheetseries.owasp.org/" rel="noopener">Cheat Sheet Series <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.o2">Short, practical guides on specific topics, from authentication to deserialization.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://owasp.org/www-project-web-security-testing-guide/" rel="noopener">Web Security Testing Guide <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.o3">A complete methodology for testing web applications.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://owasp.org/www-project-application-security-verification-standard/" rel="noopener">ASVS <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.o4">The Application Security Verification Standard. What “secure enough” means, requirement by requirement.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://owasp.org/www-project-juice-shop/" rel="noopener">Juice Shop <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.o5">An intentionally insecure web app. Good for warming up before our labs.</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <section class="section container" aria-labelledby="rs-ref-title">
+      <div class="section-head">
+        <h2 class="h2" id="rs-ref-title" data-i18n="rs.ref.title">References you’ll keep open</h2>
+      </div>
+      <ul class="res-grid">
+        <li class="res-card">
+          <h3><a href="https://attack.mitre.org/" rel="noopener">MITRE ATT&amp;CK <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.r1">Attacker tactics and techniques, mapped from real incidents. Useful for both sides.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://nvd.nist.gov/" rel="noopener">NVD <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.r2">The US National Vulnerability Database. Where you look up a CVE.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://gtfobins.github.io/" rel="noopener">GTFOBins <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.r3">Unix binaries that can be abused to escalate privileges or bypass restrictions.</p>
+        </li>
+        <li class="res-card">
+          <h3><a href="https://lolbas-project.github.io/" rel="noopener">LOLBAS <span class="ext" aria-hidden="true">↗</span></a></h3>
+          <p data-i18n="rs.r4">The Windows equivalent: legitimate binaries attackers use to stay under the radar.</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <section class="section container" aria-labelledby="rs-own-title">
+      <div class="section-head">
+        <h2 class="h2" id="rs-own-title" data-i18n="rs.own.title">Our cheat sheets</h2>
+      </div>
+      <div class="empty-state">
+        <p class="empty-title" data-i18n="rs.own.empty">Coming soon.</p>
+        <p data-i18n="rs.own.p">Short guides written from our labs: triage checklists, pivoting notes and more. Subscribe to the briefing to know when they’re out.</p>
+        <p><a class="btn btn-ghost" href="briefing.html#nl-title" data-i18n="rs.own.cta">Subscribe to the briefing</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

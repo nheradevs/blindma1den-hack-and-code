@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="sec.meta.title">Security Whitepaper — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:sec.meta.description" content="This document explains how we protect the platform, your data and everyone else’s, while running real malware in our labs.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Security Whitepaper — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="This document explains how we protect the platform, your data and everyone else’s, while running real malware in our labs.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero container" aria-labelledby="sec-title">
+      <p class="eyebrow" data-i18n="sec.eyebrow">Security Whitepaper</p>
+      <h1 class="page-title" id="sec-title" data-i18n="sec.h1">How we run real malware without setting anything on fire.</h1>
+      <p class="page-lead" data-i18n="sec.lead">This document explains how we protect the platform, your data and everyone else’s, while running real malware in our labs.</p>
+      <p class="post-meta"><span data-i18n="doc.updated">Last updated:</span> <span class="tbd">[DATE]</span></p>
+    </section>
+
+    <hr class="divider container">
+
+    <div class="container doc">
+      <p class="draft-banner" role="note"><strong data-i18n="doc.draft.label">Draft</strong> <span data-i18n="sec.draft">The technical details are being written by our infrastructure team. Sections marked in brackets are pending.</span></p>
+      <nav class="toc" aria-labelledby="sec-toc">
+        <h2 class="toc-title" id="sec-toc" data-i18n="doc.toc">On this page</h2>
+        <ol>
+          <li><a href="#isolation" data-i18n="sec.isolation.h">Lab isolation</a></li>
+          <li><a href="#malware" data-i18n="sec.malware.h">Malware handling</a></li>
+          <li><a href="#ephemeral" data-i18n="sec.ephemeral.h">Temporary environments</a></li>
+          <li><a href="#platform" data-i18n="sec.platform.h">Platform security</a></li>
+          <li><a href="#data" data-i18n="sec.data.h">Data we store</a></li>
+          <li><a href="#ir" data-i18n="sec.ir.h">Monitoring and incident response</a></li>
+          <li><a href="#report" data-i18n="sec.report.h">Reporting a vulnerability</a></li>
+        </ol>
+      </nav>
+      <div class="prose">
+        <section aria-labelledby="isolation">
+          <h2 id="isolation" data-i18n="sec.isolation.h">Lab isolation</h2>
+          <p data-i18n="sec.isolation.0">Every lab runs in its own isolated environment. Malware never reaches your computer or the internet.</p>
+          <p class="tbd" data-i18n="sec.isolation.1">[Network segmentation, egress filtering and virtualization model]</p>
+        </section>
+        <section aria-labelledby="malware">
+          <h2 id="malware" data-i18n="sec.malware.h">Malware handling</h2>
+          <p class="tbd" data-i18n="sec.malware.0">[How samples are sourced, stored, executed and destroyed]</p>
+        </section>
+        <section aria-labelledby="ephemeral">
+          <h2 id="ephemeral" data-i18n="sec.ephemeral.h">Temporary environments</h2>
+          <p class="tbd" data-i18n="sec.ephemeral.0">[How long an environment lives and how it is reset]</p>
+        </section>
+        <section aria-labelledby="platform">
+          <h2 id="platform" data-i18n="sec.platform.h">Platform security</h2>
+          <p class="tbd" data-i18n="sec.platform.0">[Authentication, MFA, encryption in transit and at rest, secrets management]</p>
+        </section>
+        <section aria-labelledby="data">
+          <h2 id="data" data-i18n="sec.data.h">Data we store</h2>
+          <p class="tbd" data-i18n="sec.data.0">[What user data we store, where, and for how long]</p>
+          <p><a class="link-plain" href="privacy.html" data-i18n="sec.data.1">See the privacy policy</a></p>
+        </section>
+        <section aria-labelledby="ir">
+          <h2 id="ir" data-i18n="sec.ir.h">Monitoring and incident response</h2>
+          <p class="tbd" data-i18n="sec.ir.0">[How we detect and respond to incidents on our own platform]</p>
+        </section>
+        <section aria-labelledby="report">
+          <h2 id="report" data-i18n="sec.report.h">Reporting a vulnerability</h2>
+          <p data-i18n="sec.report.0">Found something? Follow our vulnerability disclosure policy.</p>
+          <p><a class="link-plain" href="disclosure.html" data-i18n="sec.report.1">Read the disclosure policy</a></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

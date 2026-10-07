@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="post.meta.title">[POST TITLE] — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:post.meta.description" content="[Post description]">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="[POST TITLE] — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="[Post description]">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" aria-current="page" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!--
+      ARTICLE TEMPLATE
+      Copy this file for each new post (e.g. briefing/2026-10-ransomware-triage.html),
+      replace every [BRACKET] and update <title>, description and og tags.
+      Article body is written in one language; publish a separate file per language if needed.
+    -->
+    <article class="container post" aria-labelledby="post-title">
+      <nav class="breadcrumb" data-i18n-attr="aria-label:post.crumb" aria-label="Breadcrumb">
+        <a class="link-plain" href="briefing.html" data-i18n="post.back">← Back to Briefing</a>
+      </nav>
+
+      <header class="post-head">
+        <ul class="tags"><li class="tag tag-blue" data-i18n="br.cat.incident">Incident analysis</li></ul>
+        <h1 class="page-title" id="post-title"><span class="tbd">[POST TITLE]</span></h1>
+        <p class="page-lead tbd">[Subtitle: one sentence on what the reader will learn.]</p>
+        <p class="post-meta">
+          <span class="tbd">[AUTHOR]</span> ·
+          <time class="tbd" datetime="2026-01-01">[DATE]</time> ·
+          <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span>
+        </p>
+      </header>
+
+      <div class="ph post-cover" role="img" data-i18n-attr="aria-label:br.ph.cover" aria-label="Placeholder: post cover image">
+        <span class="ph-label">IMG · <span data-i18n="br.ph.coverShort">Post cover</span></span>
+      </div>
+
+      <div class="prose">
+        <p class="tbd">[Intro paragraph. What happened and why it matters, in three or four lines.]</p>
+
+        <h2 class="tbd">[Section heading]</h2>
+        <p class="tbd">[Body text. Keep paragraphs short. Explain what you did and why, not only the commands.]</p>
+        <pre><code>$ [example command]
+[example output]</code></pre>
+
+        <h3 class="tbd">[Subsection heading]</h3>
+        <ul>
+          <li class="tbd">[List item]</li>
+          <li class="tbd">[List item]</li>
+        </ul>
+
+        <aside class="callout" aria-label="Note">
+          <p class="tbd">[Callout: a warning, a tip or the key takeaway.]</p>
+        </aside>
+
+        <blockquote>
+          <p class="tbd">[Quote or log excerpt worth highlighting.]</p>
+        </blockquote>
+
+        <h2 class="tbd">[Lessons learned]</h2>
+        <p class="tbd">[What a senior would have done differently.]</p>
+      </div>
+
+      <footer class="post-foot">
+        <div class="author">
+          <div class="ph author-ph" role="img" data-i18n-attr="aria-label:ab.ph.photo" aria-label="Placeholder: author photo"><span class="ph-label" data-i18n="ab.ph.photoShort">Photo</span></div>
+          <div>
+            <p class="author-name tbd">[AUTHOR NAME]</p>
+            <p class="tbd">[Short bio]</p>
+          </div>
+        </div>
+      </footer>
+    </article>
+
+    <hr class="divider container">
+
+    <section class="final-cta container" aria-labelledby="post-final">
+      <p class="final-text" id="post-final" data-i18n="post.final">Want to try it yourself?</p>
+      <div class="final-actions">
+        <a class="btn btn-primary" href="gauntlet.html" data-i18n="ctf.final.labs">Train in The Gauntlet</a>
+        <a class="btn btn-ghost" href="briefing.html" data-i18n="post.more">More from Briefing</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

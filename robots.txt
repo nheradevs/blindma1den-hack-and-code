@@ -1,0 +1,7 @@
+# TODO before deploy: replace YOUR-DOMAIN
+User-agent: *
+Disallow: /app/
+Disallow: /thanks.html
+Disallow: /post.html
+
+Sitemap: https://YOUR-DOMAIN/sitemap.xml

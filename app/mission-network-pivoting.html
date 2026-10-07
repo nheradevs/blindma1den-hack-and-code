@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="app.t.mission">Network Pivoting · Mission 01 — Blindma1den Hack&amp;Code</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/i18n-app.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/app.js" defer></script>
+</head>
+<body class="app-body">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <!--
+    PROTOTYPE: static pages with sample data. In production every /app/ page must be served only
+    after a server-side session check (never rely on JavaScript to protect these pages).
+  -->
+  <div class="app" data-app>
+    <header class="app-top">
+      <button class="icon-btn sb-toggle" type="button" aria-controls="app-sidebar" aria-expanded="true" data-sb-toggle
+              data-i18n-attr="aria-label:app.menu" aria-label="Main menu"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#menu"/></svg></button>
+      <a class="logo app-logo" href="index.html"><img src="../assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:app.homeAlt"></a>
+
+      <form class="app-search" role="search" action="search.html" method="get">
+        <label class="sr-only" for="app-q" data-i18n="app.search.label">Search missions, tracks and write-ups</label>
+        <svg class="i search-icon" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg>
+        <input id="app-q" type="search" name="q" maxlength="100" autocomplete="off" spellcheck="false"
+               placeholder="Search missions, tracks, write-ups" data-i18n-attr="placeholder:app.search.ph">
+        <kbd aria-hidden="true">/</kbd>
+      </form>
+
+      <div class="top-actions">
+        <a class="icon-btn search-mobile" href="search.html" data-i18n-attr="aria-label:app.search.label" aria-label="Search missions, tracks and write-ups"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg></a>
+        <a class="icon-btn" href="../contact.html" data-i18n-attr="aria-label:app.help" aria-label="Help"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#help"/></svg></a>
+
+        <div class="menu-wrap">
+          <button class="icon-btn" type="button" aria-expanded="false" aria-controls="notif-panel" data-menu
+                  data-i18n-attr="aria-label:app.notif.btn" aria-label="Notifications, 2 unread"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#bell"/></svg><span class="dot" aria-hidden="true"></span></button>
+          <div class="popover" id="notif-panel" hidden>
+            <h2 class="popover-title" data-i18n="app.notif.title">Notifications</h2>
+            <ul class="notif-list">
+              <li><a href="arenas.html"><strong data-i18n="app.notif.n1h">Live Arena announced</strong><span data-i18n="app.notif.n1p">Registration opens soon. Warm up in The Gauntlet.</span></a></li>
+              <li><a href="briefings.html"><strong data-i18n="app.notif.n2h">New intel briefing</strong><span data-i18n="app.notif.n2p">A new incident analysis is out.</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <button class="avatar-btn" type="button" aria-expanded="false" aria-controls="user-menu" data-menu
+                  data-i18n-attr="aria-label:app.user.btn" aria-label="Account menu"><span class="avatar" aria-hidden="true">OP</span></button>
+          <div class="popover popover-user" id="user-menu" hidden>
+            <p class="user-name tbd">[OPERATOR]</p>
+            <p class="user-plan"><span data-i18n="app.user.plan">Plan:</span> Recruit</p>
+            <ul class="menu-list">
+              <li><a href="settings.html#profile"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#user"/></svg><span data-i18n="app.user.profile">Profile</span></a></li>
+              <li><a href="settings.html#security"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#shield"/></svg><span data-i18n="app.user.security">Security and MFA</span></a></li>
+              <li><a href="settings.html#plan"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#settings"/></svg><span data-i18n="app.user.settings">Settings</span></a></li>
+            </ul>
+            <div class="menu-lang">
+              <span data-i18n="lang.label">Language</span>
+              <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+                <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+              </div>
+            </div>
+            <form method="post" action="/api/auth/logout" data-logout>
+              <button class="menu-logout" type="submit"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span data-i18n="app.nav.logout">Disconnect</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="app-sidebar" id="app-sidebar" data-i18n-attr="aria-label:app.nav.label" aria-label="Platform">
+      <ul class="sb-list">
+        <li><a class="sb-link" href="index.html" data-tip="Home" data-i18n-attr="data-tip:app.nav.home"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#home"/></svg><span class="sb-label" data-i18n="app.nav.home">Home</span></a></li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-mission"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#command"/></svg><span data-i18n="app.nav.g.mission">Mission Control</span></p>
+          <ul aria-labelledby="sbg-mission">
+            <li><a class="sb-link" href="terminal.html" data-tip="Terminal" data-i18n-attr="data-tip:app.nav.terminal"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#terminal"/></svg><span class="sb-label" data-i18n="app.nav.terminal">Terminal</span></a></li>
+            <li><a class="sb-link" href="vectors.html" data-tip="Vectors" data-i18n-attr="data-tip:app.nav.vectors"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#target"/></svg><span class="sb-label" data-i18n="app.nav.vectors">Vectors</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-combat"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#swords"/></svg><span data-i18n="app.nav.g.combat">Combat Zones</span></p>
+          <ul aria-labelledby="sbg-combat">
+            <li><a class="sb-link" href="gauntlet.html" aria-current="page" data-tip="The Gauntlet" data-i18n-attr="data-tip:app.nav.gauntlet"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#gauntlet"/></svg><span class="sb-label" data-i18n="app.nav.gauntlet">The Gauntlet</span></a></li>
+            <li><a class="sb-link" href="arenas.html" data-tip="Live Arenas" data-i18n-attr="data-tip:app.nav.arenas"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#arena"/></svg><span class="sb-label" data-i18n="app.nav.arenas">Live Arenas</span></a></li>
+            <li><a class="sb-link" href="briefings.html" data-tip="Intel Briefings" data-i18n-attr="data-tip:app.nav.briefings"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#doc"/></svg><span class="sb-label" data-i18n="app.nav.briefings">Intel Briefings</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-system"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#device"/></svg><span data-i18n="app.nav.g.system">System</span></p>
+          <ul aria-labelledby="sbg-system">
+            <li><a class="sb-link" href="leaderboard.html" data-tip="Leaderboard" data-i18n-attr="data-tip:app.nav.leaderboard"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#trophy"/></svg><span class="sb-label" data-i18n="app.nav.leaderboard">Leaderboard</span></a></li>
+            <li><a class="sb-link" href="inventory.html" data-tip="Inventory" data-i18n-attr="data-tip:app.nav.inventory"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#backpack"/></svg><span class="sb-label" data-i18n="app.nav.inventory">Inventory</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#users"/></svg><span data-i18n="app.nav.g.squad">Squad</span></p>
+          <ul aria-labelledby="sbg-squad">
+            <li><a class="sb-link" href="squad.html" data-tip="Custom Arena" data-i18n-attr="data-tip:app.nav.squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#layers"/></svg><span class="sb-label" data-i18n="app.nav.squad">Custom Arena</span></a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="sb-bottom" method="post" action="/api/auth/logout" data-logout>
+        <button class="sb-link sb-logout" type="submit" data-tip="Disconnect" data-i18n-attr="data-tip:app.nav.logout"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span class="sb-label" data-i18n="app.nav.logout">Disconnect</span></button>
+      </form>
+    </nav>
+
+    <div class="sb-overlay" data-sb-overlay hidden></div>
+
+    <main id="main" class="app-main" tabindex="-1">
+      <nav class="breadcrumb-app" data-i18n-attr="aria-label:post.crumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="gauntlet.html">The Gauntlet</a></li>
+          <li><a href="track-network-pivoting.html" data-i18n="t3.h">Network Pivoting</a></li>
+          <li><a href="mission-network-pivoting.html" aria-current="page" class="tbd">[MISSION 01]</a></li>
+        </ol>
+      </nav>
+
+      <header class="page-head">
+        <div>
+          <p class="eyebrow"><span data-i18n="app.ms.mission">Mission</span> 01 · <span data-i18n="t3.h">Network Pivoting</span></p>
+          <h1 class="app-h1 tbd">[MISSION 01]</h1>
+          <ul class="meta-chips">
+            <li><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#badge"/></svg>Junior</li>
+            <li><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#clock"/></svg><span data-i18n="app.ms.limit">60 min time limit</span></li>
+            <li><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#flag"/></svg>100 <span data-i18n="app.ms.points">points</span></li>
+          </ul>
+        </div>
+        <p class="demo-badge" data-i18n="app.demo">Sample data</p>
+      </header>
+
+      <div class="mission-grid">
+        <div class="mission-main">
+          <!-- LAB: desktop only (>= 1024px). Below that, the desktop gate replaces it. -->
+          <section class="lab" aria-labelledby="lab-h" data-lab>
+            <div class="lab-bar">
+              <h2 class="lab-title" id="lab-h" data-i18n="app.ms.lab">Lab environment</h2>
+              <p class="lab-status" data-lab-status><span class="status-dot" aria-hidden="true"></span><span data-lab-status-text data-i18n="app.ms.stopped">Stopped</span></p>
+              <p class="lab-timer" data-lab-timer hidden><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#clock"/></svg><span data-lab-time>60:00</span></p>
+            </div>
+            <div class="lab-screen">
+              <!-- The remote desktop / terminal stream mounts here once the backend exists. -->
+              <div class="lab-idle" data-lab-idle>
+                <svg class="i" aria-hidden="true"><use href="../assets/icons.svg#desktop"/></svg>
+                <p data-i18n="app.ms.idle">The target is waiting. The clock starts when you do.</p>
+                <button class="btn btn-primary" type="button" data-lab-start><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#play"/></svg><span data-i18n="app.ms.start">Start environment</span></button>
+              </div>
+              <div class="lab-running" data-lab-running hidden>
+                <p class="lab-placeholder" data-i18n="app.ms.stream">[Lab stream: attack box + target]</p>
+                <button class="btn btn-ghost" type="button" data-lab-stop data-i18n="app.ms.stop">Stop environment</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="desktop-gate" aria-labelledby="gate-h">
+            <svg class="i" aria-hidden="true"><use href="../assets/icons.svg#desktop"/></svg>
+            <h2 class="app-h2" id="gate-h" data-i18n="app.gate.h">Responding to an incident from your phone? Bold. But no.</h2>
+            <p data-i18n="app.gate.p">Labs need a screen of at least 1024 px and a keyboard. Read the briefing here and launch it from your computer.</p>
+            <div class="gate-actions">
+              <button class="btn btn-primary" type="button" data-demo-toast="app.toast.saved"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#bookmark"/></svg><span data-i18n="app.gate.save">Save for desktop</span></button>
+              <button class="btn btn-ghost" type="button" data-demo-toast="app.toast.emailed"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#mail"/></svg><span data-i18n="app.gate.email">Email me the link</span></button>
+            </div>
+          </section>
+
+          <!-- Tabs from the design: [INTEL_BRIEFING] [OPERATIONAL_PROGRESS] [FIELD_NOTES] -->
+          <section class="mission-tabs" aria-labelledby="tabs-h">
+            <h2 class="sr-only" id="tabs-h" data-i18n="app.ms.details">Mission details</h2>
+            <div class="tablist" role="tablist" data-i18n-attr="aria-label:app.ms.details" aria-label="Mission details">
+              <button class="tab" type="button" role="tab" id="tab-brief" aria-controls="panel-brief" aria-selected="true">[ INTEL_BRIEFING ]</button>
+              <button class="tab" type="button" role="tab" id="tab-progress" aria-controls="panel-progress" aria-selected="false" tabindex="-1">[ OPERATIONAL_PROGRESS ]</button>
+              <button class="tab" type="button" role="tab" id="tab-notes" aria-controls="panel-notes" aria-selected="false" tabindex="-1">[ FIELD_NOTES ]</button>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="panel-brief" aria-labelledby="tab-brief" tabindex="0">
+              <p class="tbd" data-i18n="app.ms.briefTbd">[Mission briefing: written by the content team]</p>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="panel-progress" aria-labelledby="tab-progress" tabindex="0" hidden>
+              <ol class="objectives">
+                <li><span class="obj-dot" aria-hidden="true"></span><span class="tbd">[Objective 1]</span></li>
+                <li><span class="obj-dot" aria-hidden="true"></span><span class="tbd">[Objective 2]</span></li>
+                <li><span class="obj-dot" aria-hidden="true"></span><span class="tbd">[Objective 3]</span></li>
+              </ol>
+              <p class="small muted" data-i18n="app.ms.objNote">Completed objectives are marked by the platform when it detects them in the lab.</p>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="panel-notes" aria-labelledby="tab-notes" tabindex="0" hidden>
+              <label class="field-label" for="field-notes" data-i18n="app.ms.notesLabel">Your notes for this mission</label>
+              <textarea class="input textarea" id="field-notes" rows="8" maxlength="5000" data-notes="network-pivoting-01" aria-describedby="notes-help"></textarea>
+              <p class="field-help" id="notes-help" data-i18n="app.ms.notesHelp">Saved only in this browser for now. Don’t paste real credentials here.</p>
+            </div>
+          </section>
+        </div>
+
+        <aside class="mission-side" aria-labelledby="side-h">
+          <h2 class="sr-only" id="side-h" data-i18n="app.ms.side">Mission tools</h2>
+          <section class="card" aria-labelledby="flag-h">
+            <h3 class="app-h3" id="flag-h"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#flag"/></svg><span data-i18n="app.ms.flag">Submit flag</span></h3>
+            <form class="flag-form" data-flag-form novalidate>
+              <label class="sr-only" for="flag-input" data-i18n="app.ms.flag">Submit flag</label>
+              <input class="input" id="flag-input" name="flag" type="text" autocomplete="off" spellcheck="false" maxlength="200" placeholder="BM1{...}" aria-describedby="flag-msg">
+              <button class="btn btn-primary" type="submit" data-i18n="app.ms.submit">Submit</button>
+              <p class="flag-msg" id="flag-msg" role="status" aria-live="polite" hidden></p>
+            </form>
+          </section>
+
+          <section class="card" aria-labelledby="roe-h">
+            <h3 class="app-h3" id="roe-h" data-i18n="app.ms.roe">Rules of engagement</h3>
+            <ul class="plain-list">
+              <li data-i18n="app.ms.r1">Only the target assigned to this lab is in scope.</li>
+              <li data-i18n="app.ms.r2">No denial of service. Noisy scans may wake the IDS.</li>
+              <li data-i18n="app.ms.r3">No hint button. The resources below are fair game.</li>
+            </ul>
+          </section>
+
+          <section class="card" aria-labelledby="res-h">
+            <h3 class="app-h3" id="res-h" data-i18n="app.ms.resources">Allowed resources</h3>
+            <ul class="link-list">
+              <li class="tbd">[Resource links for this mission]</li>
+              <li><a href="../resources.html" data-i18n="f.resources">Resources</a></li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+  <p class="toast" role="status" aria-live="polite" data-toast hidden></p>
+</body>
+</html>

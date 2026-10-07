@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="meta.title">Blindma1den Hack&amp;Code — Real-world cybersecurity training</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Train against real breaches, real malware and real stress. From juniors to seniors, solo or squad. No sanitized sandboxes.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="Cyber attacks don't play nice. Neither do we.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero container" aria-labelledby="hero-title">
+      <h1 class="hero-title" id="hero-title">
+        <span class="line" data-i18n="hero.l1">Cyber Attacks</span>
+        <span class="line" data-i18n="hero.l2">Don’t Play Nice.</span>
+        <span class="line gradient-text" data-i18n="hero.l3">Neither Do We.</span>
+      </h1>
+
+      <div class="hero-copy">
+        <p>
+          <span data-i18n="hero.p1">That 2 AM pager buzz isn’t a glitch. It’s a lateral move from a compromised laptop to your cloud core. Your EDR is asleep while your data gets encrypted.</span>
+          <strong class="accent" data-i18n="hero.p1b">Ready to wake up, or do you need another cup of “I should’ve trained more”?</strong>
+        </p>
+        <p data-i18n="hero.p2">Most platforms? Sanitized sandboxes with a hint button. We drop you into a burning building: real breaches, real stress, zero hand-holding.</p>
+        <p><strong class="accent" data-i18n="hero.p3">Wall certificate? Bye. Breach survival? Welcome home.</strong></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+          <a class="link-arrow" href="#tracks" data-i18n="hero.secondary">See what’s burning</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ TRACKS ============ -->
+    <section class="tracks container" id="tracks" aria-labelledby="tracks-title">
+      <div class="tracks-intro">
+        <h2 class="h2" id="tracks-title" data-i18n="tracks.title">Pick Your Poison</h2>
+        <p class="tracks-lead">
+          <span data-i18n="tracks.lead1">The perimeter is compromised.</span>
+          <span data-i18n="tracks.lead2">The clock is ticking.</span>
+        </p>
+        <p class="tracks-question gradient-text" data-i18n="tracks.question">Where do you start?</p>
+      </div>
+
+      <div class="tracks-list-wrap">
+        <ul class="tracks-list">
+          <li>
+            <h3 data-i18n="t1.h">Social Engineering</h3>
+            <p data-i18n="t1.p">Forget firewalls. Bypass the one between the ears. Craft lures that hook execs and own the human layer.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t2.h">Web App Exploits</h3>
+            <p data-i18n="t2.p">Way beyond alert(1) boxes. Break “patched” stacks and abuse the logic flaws the WAF never sees coming.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t3.h">Network Pivoting</h3>
+            <p data-i18n="t3.p">The perimeter is a lie. Pivot from a lobby IoT camera to the Domain Controller. Map the forest, then burn it.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t4.h">Endpoint Warfare</h3>
+            <p data-i18n="t4.p">EDR vs. LOLBins. Chain stealthy shells or hunt their signatures. Either way, it’s a game of shadows.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t5.h">Cloud Nightmares</h3>
+            <p data-i18n="t5.p">Escape pods, abuse IAM over-permissions and own the fleet before the admin finishes their coffee.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t6.h">Malware &amp; Forensics</h3>
+            <p data-i18n="t6.p">Reverse the un-reversible. Decrypt ransomware and rebuild the logs someone tried very hard to burn.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t7.h">Honeypots &amp; Deception</h3>
+            <p data-i18n="t7.p">Flip the script. Build the trap, lure the threat and turn their exploit into your intel.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t8.h">IoT &amp; Mobile Carnage</h3>
+            <p data-i18n="t8.p">From Android rootkits to Zigbee hijacks. Turn “smart” convenience into your personal botnet.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t9.h">GRC &amp; Auditing</h3>
+            <p data-i18n="t9.p">Practice for the breach, not the checkbox. Prove your resilience before a $10M fine does it for you.</p>
+          </li>
+          <li>
+            <h3 data-i18n="t10.h">Purple Team Ops</h3>
+            <p data-i18n="t10.p">One sweaty session. Attack, detect and mitigate in real time. Friction builds muscle.</p>
+          </li>
+        </ul>
+        <p class="tracks-stat" data-i18n="tracks.stat">150+ Labs. Weekly Updates. No Fluff. Just Fire.</p>
+        <a class="btn btn-primary" href="gauntlet.html" data-i18n="cta.fight">Pick Your Fight</a>
+      </div>
+    </section>
+
+    <!-- ============ PHOTO STRIP (placeholders) ============ -->
+    <div class="gallery">
+      <div class="ph ph-1" role="img" data-i18n-attr="aria-label:img.1" aria-label="Placeholder: two people working at a desk">
+        <span class="ph-label">IMG 01 · <span data-i18n="img.1s">Team at a workstation</span></span>
+      </div>
+      <div class="ph ph-2" role="img" data-i18n-attr="aria-label:img.2" aria-label="Placeholder: person on a laptop in blue light">
+        <span class="ph-label">IMG 02 · <span data-i18n="img.2s">Night shift, laptop</span></span>
+      </div>
+      <div class="ph ph-3" role="img" data-i18n-attr="aria-label:img.3" aria-label="Placeholder: person typing in a dim room">
+        <span class="ph-label">IMG 03 · <span data-i18n="img.3s">Home lab session</span></span>
+      </div>
+    </div>
+
+    <hr class="divider container">
+
+    <!-- ============ AUDIENCE ============ -->
+    <section class="split container" aria-labelledby="audience-title">
+      <h2 class="h2 h2-accent" id="audience-title">
+        <span class="line text-lavender" data-i18n="aud.l1">Juniors to Seniors.</span>
+        <span class="line text-blue" data-i18n="aud.l2">Solo or Squad.</span>
+      </h2>
+      <div class="split-copy">
+        <p data-i18n="aud.p1">Junior? Fumble through Metasploit without breaking the internet.</p>
+        <p data-i18n="aud.p2">Senior? Stress-test your evasion chains against hardened kernels.</p>
+        <p>
+          <span data-i18n="aud.p3">Global top-tier talent, veterans sharpening rusty blades, and yes, those of you “upskilling” on company time. Everyone’s here.</span>
+          <strong class="accent" data-i18n="aud.p3b">We won’t tell your boss if you don’t.</strong>
+        </p>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ PRICING (placeholder) ============ -->
+    <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
+      <header class="pricing-head">
+        <h2 class="h2" id="pricing-title" data-i18n="price.title">Choose Your Plan</h2>
+        <p class="muted" data-i18n="price.sub">Pricing drops soon. The labs won’t get any easier.</p>
+      </header>
+
+      <div class="pricing-grid">
+        <article class="plan">
+          <h3 class="plan-name" data-i18n="plan1.name">Recruit</h3>
+          <p class="plan-for" data-i18n="plan1.for">For juniors done with tutorials.</p>
+          <p class="plan-price"><span class="tbd">[PRICE TBD]</span></p>
+          <ul class="plan-features">
+            <li class="tbd">[Feature]</li>
+            <li class="tbd">[Feature]</li>
+            <li class="tbd">[Feature]</li>
+          </ul>
+          <a class="btn btn-ghost" href="contact.html?topic=pricing" data-i18n="price.notify">Notify me</a>
+        </article>
+
+        <article class="plan plan-featured">
+          <h3 class="plan-name" data-i18n="plan2.name">Operator</h3>
+          <p class="plan-badge" data-i18n="plan2.badge">Recommended</p>
+          <p class="plan-for" data-i18n="plan2.for">For pros who need the real thing.</p>
+          <p class="plan-price"><span class="tbd">[PRICE TBD]</span></p>
+          <ul class="plan-features">
+            <li class="tbd">[Feature]</li>
+            <li class="tbd">[Feature]</li>
+            <li class="tbd">[Feature]</li>
+          </ul>
+          <a class="btn btn-primary" href="contact.html?topic=pricing" data-i18n="price.notify">Notify me</a>
+        </article>
+
+        <article class="plan">
+          <h3 class="plan-name" data-i18n="plan3.name">Squad</h3>
+          <p class="plan-for" data-i18n="plan3.for">For teams and companies (B2B).</p>
+          <p class="plan-price"><span class="tbd">[PRICE TBD]</span></p>
+          <ul class="plan-features">
+            <li class="tbd">[Feature]</li>
+            <li class="tbd">[Feature]</li>
+            <li class="tbd">[Feature]</li>
+          </ul>
+          <a class="btn btn-ghost" href="operations.html#contact" data-i18n="price.talk">Talk to us</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final-cta container" aria-labelledby="final-title">
+      <p class="final-text" id="final-title" data-i18n="final.text">Done scrolling?</p>
+      <a class="btn btn-primary" href="signup.html" data-i18n="cta.hack">Time to Hack</a>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

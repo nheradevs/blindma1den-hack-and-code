@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="app.t.gauntlet">The Gauntlet — Blindma1den Hack&amp;Code</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d1117">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/app.css">
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/i18n-app.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/app.js" defer></script>
+  <script src="../js/filter.js" defer></script>
+</head>
+<body class="app-body">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+  <!--
+    PROTOTYPE: static pages with sample data. In production every /app/ page must be served only
+    after a server-side session check (never rely on JavaScript to protect these pages).
+  -->
+  <div class="app" data-app>
+    <header class="app-top">
+      <button class="icon-btn sb-toggle" type="button" aria-controls="app-sidebar" aria-expanded="true" data-sb-toggle
+              data-i18n-attr="aria-label:app.menu" aria-label="Main menu"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#menu"/></svg></button>
+      <a class="logo app-logo" href="index.html"><img src="../assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:app.homeAlt"></a>
+
+      <form class="app-search" role="search" action="search.html" method="get">
+        <label class="sr-only" for="app-q" data-i18n="app.search.label">Search missions, tracks and write-ups</label>
+        <svg class="i search-icon" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg>
+        <input id="app-q" type="search" name="q" maxlength="100" autocomplete="off" spellcheck="false"
+               placeholder="Search missions, tracks, write-ups" data-i18n-attr="placeholder:app.search.ph">
+        <kbd aria-hidden="true">/</kbd>
+      </form>
+
+      <div class="top-actions">
+        <a class="icon-btn search-mobile" href="search.html" data-i18n-attr="aria-label:app.search.label" aria-label="Search missions, tracks and write-ups"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#search"/></svg></a>
+        <a class="icon-btn" href="../contact.html" data-i18n-attr="aria-label:app.help" aria-label="Help"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#help"/></svg></a>
+
+        <div class="menu-wrap">
+          <button class="icon-btn" type="button" aria-expanded="false" aria-controls="notif-panel" data-menu
+                  data-i18n-attr="aria-label:app.notif.btn" aria-label="Notifications, 2 unread"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#bell"/></svg><span class="dot" aria-hidden="true"></span></button>
+          <div class="popover" id="notif-panel" hidden>
+            <h2 class="popover-title" data-i18n="app.notif.title">Notifications</h2>
+            <ul class="notif-list">
+              <li><a href="arenas.html"><strong data-i18n="app.notif.n1h">Live Arena announced</strong><span data-i18n="app.notif.n1p">Registration opens soon. Warm up in The Gauntlet.</span></a></li>
+              <li><a href="briefings.html"><strong data-i18n="app.notif.n2h">New intel briefing</strong><span data-i18n="app.notif.n2p">A new incident analysis is out.</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-wrap">
+          <button class="avatar-btn" type="button" aria-expanded="false" aria-controls="user-menu" data-menu
+                  data-i18n-attr="aria-label:app.user.btn" aria-label="Account menu"><span class="avatar" aria-hidden="true">OP</span></button>
+          <div class="popover popover-user" id="user-menu" hidden>
+            <p class="user-name tbd">[OPERATOR]</p>
+            <p class="user-plan"><span data-i18n="app.user.plan">Plan:</span> Recruit</p>
+            <ul class="menu-list">
+              <li><a href="settings.html#profile"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#user"/></svg><span data-i18n="app.user.profile">Profile</span></a></li>
+              <li><a href="settings.html#security"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#shield"/></svg><span data-i18n="app.user.security">Security and MFA</span></a></li>
+              <li><a href="settings.html#plan"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#settings"/></svg><span data-i18n="app.user.settings">Settings</span></a></li>
+            </ul>
+            <div class="menu-lang">
+              <span data-i18n="lang.label">Language</span>
+              <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+                <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+              </div>
+            </div>
+            <form method="post" action="/api/auth/logout" data-logout>
+              <button class="menu-logout" type="submit"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span data-i18n="app.nav.logout">Disconnect</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="app-sidebar" id="app-sidebar" data-i18n-attr="aria-label:app.nav.label" aria-label="Platform">
+      <ul class="sb-list">
+        <li><a class="sb-link" href="index.html" data-tip="Home" data-i18n-attr="data-tip:app.nav.home"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#home"/></svg><span class="sb-label" data-i18n="app.nav.home">Home</span></a></li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-mission"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#command"/></svg><span data-i18n="app.nav.g.mission">Mission Control</span></p>
+          <ul aria-labelledby="sbg-mission">
+            <li><a class="sb-link" href="terminal.html" data-tip="Terminal" data-i18n-attr="data-tip:app.nav.terminal"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#terminal"/></svg><span class="sb-label" data-i18n="app.nav.terminal">Terminal</span></a></li>
+            <li><a class="sb-link" href="vectors.html" data-tip="Vectors" data-i18n-attr="data-tip:app.nav.vectors"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#target"/></svg><span class="sb-label" data-i18n="app.nav.vectors">Vectors</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-combat"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#swords"/></svg><span data-i18n="app.nav.g.combat">Combat Zones</span></p>
+          <ul aria-labelledby="sbg-combat">
+            <li><a class="sb-link" href="gauntlet.html" aria-current="page" data-tip="The Gauntlet" data-i18n-attr="data-tip:app.nav.gauntlet"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#gauntlet"/></svg><span class="sb-label" data-i18n="app.nav.gauntlet">The Gauntlet</span></a></li>
+            <li><a class="sb-link" href="arenas.html" data-tip="Live Arenas" data-i18n-attr="data-tip:app.nav.arenas"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#arena"/></svg><span class="sb-label" data-i18n="app.nav.arenas">Live Arenas</span></a></li>
+            <li><a class="sb-link" href="briefings.html" data-tip="Intel Briefings" data-i18n-attr="data-tip:app.nav.briefings"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#doc"/></svg><span class="sb-label" data-i18n="app.nav.briefings">Intel Briefings</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-system"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#device"/></svg><span data-i18n="app.nav.g.system">System</span></p>
+          <ul aria-labelledby="sbg-system">
+            <li><a class="sb-link" href="leaderboard.html" data-tip="Leaderboard" data-i18n-attr="data-tip:app.nav.leaderboard"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#trophy"/></svg><span class="sb-label" data-i18n="app.nav.leaderboard">Leaderboard</span></a></li>
+            <li><a class="sb-link" href="inventory.html" data-tip="Inventory" data-i18n-attr="data-tip:app.nav.inventory"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#backpack"/></svg><span class="sb-label" data-i18n="app.nav.inventory">Inventory</span></a></li>
+          </ul>
+        </li>
+        <li class="sb-group">
+          <p class="sb-group-label" id="sbg-squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#users"/></svg><span data-i18n="app.nav.g.squad">Squad</span></p>
+          <ul aria-labelledby="sbg-squad">
+            <li><a class="sb-link" href="squad.html" data-tip="Custom Arena" data-i18n-attr="data-tip:app.nav.squad"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#layers"/></svg><span class="sb-label" data-i18n="app.nav.squad">Custom Arena</span></a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="sb-bottom" method="post" action="/api/auth/logout" data-logout>
+        <button class="sb-link sb-logout" type="submit" data-tip="Disconnect" data-i18n-attr="data-tip:app.nav.logout"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#logout"/></svg><span class="sb-label" data-i18n="app.nav.logout">Disconnect</span></button>
+      </form>
+    </nav>
+
+    <div class="sb-overlay" data-sb-overlay hidden></div>
+
+    <main id="main" class="app-main" tabindex="-1">
+      <header class="page-head">
+        <div>
+          <p class="eyebrow" data-i18n="app.nav.g.combat">Combat Zones</p>
+          <h1 class="app-h1">The Gauntlet</h1>
+          <p class="app-lead" data-i18n="app.gt.lead">Ten tracks. Zero shortcuts. Pick one and get stuck.</p>
+        </div>
+        <p class="demo-badge" data-i18n="app.demo">Sample data</p>
+      </header>
+
+      <p class="path-note">
+        <svg class="i" aria-hidden="true"><use href="../assets/icons.svg#layers"/></svg>
+        <span><span data-i18n="app.gt.path">Your path:</span> <strong>Junior · <span data-i18n="gt.l1.h">Survive the first shift</span></strong></span>
+        <a class="link-plain" href="settings.html#preferences" data-i18n="app.gt.changePath">Change path</a>
+      </p>
+
+      <div class="filters" role="group" data-i18n-attr="aria-label:gt.filter.label" aria-label="Filter tracks by side" hidden>
+        <button type="button" class="chip" data-filter="all" aria-pressed="true" data-i18n="gt.filter.all">All</button>
+        <button type="button" class="chip" data-filter="red" aria-pressed="false">Red</button>
+        <button type="button" class="chip" data-filter="blue" aria-pressed="false">Blue</button>
+        <button type="button" class="chip" data-filter="purple" aria-pressed="false">Purple</button>
+        <button type="button" class="chip" data-filter="grc" aria-pressed="false">GRC</button>
+      </div>
+      <p class="sr-only" aria-live="polite" data-filter-status></p>
+
+      <ul class="app-track-grid">
+        <li class="app-track" data-filter-item data-tags="red">
+          <h2 class="app-h3"><a href="track-social-engineering.html" data-i18n="t1.h">Social Engineering</a></h2>
+          <p class="small muted" data-i18n="t1.p">Forget firewalls. Bypass the one between the ears. Craft lures that hook execs and own the human layer.</p>
+          <ul class="tags"><li class="tag tag-red">Red</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track is-active" data-filter-item data-tags="red">
+          <h2 class="app-h3"><a href="track-web-app-exploits.html" data-i18n="t2.h">Web App Exploits</a></h2>
+          <p class="small muted" data-i18n="t2.p">Way beyond alert(1) boxes. Break “patched” stacks and abuse the logic flaws the WAF never sees coming.</p>
+          <ul class="tags"><li class="tag tag-red">Red</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status is-ip"><span data-i18n="app.gt.ip">In progress</span> · 0 / 12</p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="red">
+          <h2 class="app-h3"><a href="track-network-pivoting.html" data-i18n="t3.h">Network Pivoting</a></h2>
+          <p class="small muted" data-i18n="t3.p">The perimeter is a lie. Pivot from a lobby IoT camera to the Domain Controller. Map the forest, then burn it.</p>
+          <ul class="tags"><li class="tag tag-red">Red</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="red blue">
+          <h2 class="app-h3"><a href="track-endpoint-warfare.html" data-i18n="t4.h">Endpoint Warfare</a></h2>
+          <p class="small muted" data-i18n="t4.p">EDR vs. LOLBins. Chain stealthy shells or hunt their signatures. Either way, it’s a game of shadows.</p>
+          <ul class="tags"><li class="tag tag-red">Red</li><li class="tag tag-blue">Blue</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="red blue">
+          <h2 class="app-h3"><a href="track-cloud-nightmares.html" data-i18n="t5.h">Cloud Nightmares</a></h2>
+          <p class="small muted" data-i18n="t5.p">Escape pods, abuse IAM over-permissions and own the fleet before the admin finishes their coffee.</p>
+          <ul class="tags"><li class="tag tag-red">Red</li><li class="tag tag-blue">Blue</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="blue">
+          <h2 class="app-h3"><a href="track-malware-forensics.html" data-i18n="t6.h">Malware &amp; Forensics</a></h2>
+          <p class="small muted" data-i18n="t6.p">Reverse the un-reversible. Decrypt ransomware and rebuild the logs someone tried very hard to burn.</p>
+          <ul class="tags"><li class="tag tag-blue">Blue</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="blue">
+          <h2 class="app-h3"><a href="track-honeypots-deception.html" data-i18n="t7.h">Honeypots &amp; Deception</a></h2>
+          <p class="small muted" data-i18n="t7.p">Flip the script. Build the trap, lure the threat and turn their exploit into your intel.</p>
+          <ul class="tags"><li class="tag tag-blue">Blue</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="red">
+          <h2 class="app-h3"><a href="track-iot-mobile.html" data-i18n="t8.h">IoT &amp; Mobile Carnage</a></h2>
+          <p class="small muted" data-i18n="t8.p">From Android rootkits to Zigbee hijacks. Turn “smart” convenience into your personal botnet.</p>
+          <ul class="tags"><li class="tag tag-red">Red</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="grc">
+          <h2 class="app-h3"><a href="track-grc-auditing.html" data-i18n="t9.h">GRC &amp; Auditing</a></h2>
+          <p class="small muted" data-i18n="t9.p">Practice for the breach, not the checkbox. Prove your resilience before a $10M fine does it for you.</p>
+          <ul class="tags"><li class="tag tag-grc">GRC</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+        <li class="app-track" data-filter-item data-tags="purple">
+          <h2 class="app-h3"><a href="track-purple-team.html" data-i18n="t10.h">Purple Team Ops</a></h2>
+          <p class="small muted" data-i18n="t10.p">One sweaty session. Attack, detect and mitigate in real time. Friction builds muscle.</p>
+          <ul class="tags"><li class="tag tag-purple">Purple</li></ul>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:app.gt.progress" aria-label="Track progress"><span class="pct-0"></span></div>
+          <p class="small track-status"><span data-i18n="app.gt.ns">Not started</span> · <span class="tbd">[N]</span> <span data-i18n="app.gt.missions">missions</span></p>
+        </li>
+      </ul>
+
+    </main>
+  </div>
+  <p class="toast" role="status" aria-live="polite" data-toast hidden></p>
+</body>
+</html>

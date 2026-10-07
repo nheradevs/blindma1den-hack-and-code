@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="ops.meta.title">Operations — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:ops.meta.description" content="Cybersecurity training for teams: paths by role, private CTFs, purple team exercises and progress reports. Real scenarios, not checkbox training.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Operations — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="Your team will face a breach. Make sure it's not their first.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" aria-current="page" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero container" aria-labelledby="ops-title">
+      <p class="eyebrow">Operations</p>
+      <h1 class="page-title" id="ops-title">
+        <span class="line" data-i18n="ops.h1a">Your team will face a breach.</span>
+        <span class="line gradient-text" data-i18n="ops.h1b">Make sure it’s not their first.</span>
+      </h1>
+      <p class="page-lead" data-i18n="ops.lead">Training for security teams that need to perform under pressure, not just pass an audit. Real scenarios, private competitions and reports your leadership can read.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact" data-i18n="ops.cta.talk">Talk to us</a>
+        <a class="btn btn-ghost" href="#offer" data-i18n="ops.cta.offer">See what’s included</a>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ WHY ============ -->
+    <section class="section container" aria-labelledby="why-title">
+      <div class="section-head">
+        <h2 class="h2" id="why-title" data-i18n="ops.why.title">Certified isn’t the same as ready</h2>
+        <p class="section-sub" data-i18n="ops.why.sub">Most teams find out how prepared they are during their first real incident. That’s an expensive way to learn.</p>
+      </div>
+      <ul class="steps">
+        <li class="step">
+          <h3 data-i18n="ops.w1.h">Certificates expire in practice</h3>
+          <p data-i18n="ops.w1.p">A certification proves someone passed an exam once. It doesn’t show how they react at 2 a.m. with incomplete logs.</p>
+        </li>
+        <li class="step">
+          <h3 data-i18n="ops.w2.h">You can’t practice on production</h3>
+          <p data-i18n="ops.w2.p">Your team needs somewhere to break things, make mistakes and try again. Your real network isn’t that place.</p>
+        </li>
+        <li class="step">
+          <h3 data-i18n="ops.w3.h">Skills fade between incidents</h3>
+          <p data-i18n="ops.w3.p">If the last real response was a year ago, the muscle memory is gone. Regular practice keeps it.</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ OFFER ============ -->
+    <section class="section container" id="offer" aria-labelledby="offer-title">
+      <div class="section-head">
+        <h2 class="h2" id="offer-title" data-i18n="ops.offer.title">What’s included</h2>
+      </div>
+      <ul class="principles">
+        <li>
+          <h3 data-i18n="ops.o1.h">Paths by role</h3>
+          <p data-i18n="ops.o1.p">SOC analysts, pentesters, cloud engineers and developers each get a path that matches their actual job.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ops.o2.h">Private CTFs</h3>
+          <p data-i18n="ops.o2.p">Competitions only for your organization. Good for team building, and for finding out who really knows what.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ops.o3.h">Purple team exercises</h3>
+          <p data-i18n="ops.o3.p">Your red and blue teams in the same scenario, in real time. Each side learns how the other one thinks.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ops.o4.h">Scenarios based on your stack</h3>
+          <p>
+            <span data-i18n="ops.o4.p">Labs that reflect the technologies you actually run.</span>
+            <span class="tbd" data-i18n="ops.o4.tbd">[Scope to be defined]</span>
+          </p>
+        </li>
+        <li>
+          <h3 data-i18n="ops.o5.h">Progress reports</h3>
+          <p data-i18n="ops.o5.p">See skills by person and by team, and where the gaps are. Written for managers, not only for analysts.</p>
+        </li>
+        <li>
+          <h3 data-i18n="ops.o6.h">Onboarding for new hires</h3>
+          <p data-i18n="ops.o6.p">Get new team members up to speed with the same scenarios your team already trained on.</p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ PROCESS ============ -->
+    <section class="section container" aria-labelledby="process-title">
+      <div class="section-head">
+        <h2 class="h2" id="process-title" data-i18n="ops.proc.title">How we work with your team</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num" aria-hidden="true">01</span>
+          <h3 data-i18n="ops.p1.h">Assessment</h3>
+          <p data-i18n="ops.p1.p">A baseline exercise to see where your team really stands. No judgment, just data.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">02</span>
+          <h3 data-i18n="ops.p2.h">Plan</h3>
+          <p data-i18n="ops.p2.p">We agree on goals, paths per role and a calendar that doesn’t get in the way of operations.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">03</span>
+          <h3 data-i18n="ops.p3.h">Training</h3>
+          <p data-i18n="ops.p3.p">Labs, private CTFs and purple team sessions. At the team’s pace, with real pressure when it counts.</p>
+        </li>
+        <li class="step">
+          <span class="step-num" aria-hidden="true">04</span>
+          <h3 data-i18n="ops.p4.h">Report</h3>
+          <p data-i18n="ops.p4.p">Measurable progress against the baseline, and recommendations for the next cycle.</p>
+        </li>
+      </ol>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ SQUAD PLAN (pricing placeholder) ============ -->
+    <section class="section container" aria-labelledby="squad-title">
+      <div class="squad-band">
+        <div>
+          <p class="eyebrow">Squad</p>
+          <h2 class="h2" id="squad-title" data-i18n="ops.squad.title">Pricing for teams</h2>
+          <p class="section-sub" data-i18n="ops.squad.p">Priced per seat, with volume discounts. Final pricing will be announced soon.</p>
+        </div>
+        <p class="plan-price"><span class="tbd">[PRICE TBD]</span> <span class="squad-unit" data-i18n="ops.squad.unit">per seat</span></p>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ CONTACT FORM (Netlify Forms) ============ -->
+    <section class="section container contact" id="contact" aria-labelledby="contact-title">
+      <div class="section-head">
+        <h2 class="h2" id="contact-title" data-i18n="ops.form.title">Tell us about your team</h2>
+        <p class="section-sub" data-i18n="ops.form.sub">We’ll reply within [N] business days. No automated sales sequence, a person will read this.</p>
+      </div>
+
+      <!-- Netlify detects this form at deploy time (Site → Forms). "bot-field" is a honeypot. -->
+      <form class="form-grid" name="operations-contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="operations-contact">
+        <p class="sr-only">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+
+        <div class="field">
+          <label class="field-label" for="f-name" data-i18n="ops.f.name">Full name</label>
+          <input class="input" id="f-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f-email" data-i18n="ops.f.email">Work email</label>
+          <input class="input" id="f-email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f-company" data-i18n="ops.f.company">Company</label>
+          <input class="input" id="f-company" name="company" type="text" required autocomplete="organization">
+        </div>
+        <div class="field">
+          <label class="field-label" for="f-size" data-i18n="ops.f.size">Team size</label>
+          <select class="input" id="f-size" name="team-size" required>
+            <option value="" data-i18n="ops.f.choose">Choose one</option>
+            <option value="1-10">1–10</option>
+            <option value="11-50">11–50</option>
+            <option value="51-200">51–200</option>
+            <option value="200+">200+</option>
+          </select>
+        </div>
+
+        <fieldset class="field field-full">
+          <legend class="field-label" data-i18n="ops.f.interest">What are you interested in?</legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="interest" value="paths"> <span data-i18n="ops.o1.h">Paths by role</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="ctf"> <span data-i18n="ops.o2.h">Private CTFs</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="purple"> <span data-i18n="ops.o3.h">Purple team exercises</span></label>
+            <label class="check"><input type="checkbox" name="interest" value="custom"> <span data-i18n="ops.o4.h">Scenarios based on your stack</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field field-full">
+          <label class="field-label" for="f-msg" data-i18n="ops.f.msg">Anything else we should know?</label>
+          <textarea class="input textarea" id="f-msg" name="message" rows="5"></textarea>
+          <p class="field-help" data-i18n="ops.f.msgHelp">Optional. Don’t include passwords, internal IPs or other sensitive data.</p>
+        </div>
+
+        <div class="field-full form-actions">
+          <button class="btn btn-primary" type="submit" data-i18n="ops.f.submit">Send</button>
+          <p class="field-help">
+            <span data-i18n="ops.f.privacy">We’ll only use this information to reply to you. Read our</span>
+            <a class="link-plain" href="privacy.html" data-i18n="br.nl.privacyLink">privacy policy</a>.
+          </p>
+        </div>
+      </form>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ FAQ ============ -->
+    <section class="section container" aria-labelledby="ops-faq-title">
+      <div class="section-head">
+        <h2 class="h2" id="ops-faq-title" data-i18n="ctf.faq.title">Questions</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary data-i18n="ops.q1">Is it safe to train with real malware?</summary>
+          <p>
+            <span data-i18n="ops.a1">Yes. Samples run in isolated networks that never touch your infrastructure or the internet.</span>
+            <a class="link-plain" href="security.html" data-i18n="intel.p1.link">Read how we isolate them</a>
+          </p>
+        </details>
+        <details>
+          <summary data-i18n="ops.q2">Who can see my employees’ results?</summary>
+          <p class="tbd" data-i18n="ops.a2">[To be defined: access roles and data retention]</p>
+        </details>
+        <details>
+          <summary data-i18n="ops.q3">Do you train non-technical staff?</summary>
+          <p class="tbd" data-i18n="ops.a3">[To be defined: social engineering awareness for the whole company]</p>
+        </details>
+        <details>
+          <summary data-i18n="ops.q4">Can individual team members keep their progress if they leave?</summary>
+          <p class="tbd" data-i18n="ops.a4">[To be defined]</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>

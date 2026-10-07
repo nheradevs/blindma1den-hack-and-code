@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="br.meta.title">Briefing — Blindma1den Hack&amp;Code</title>
+  <meta name="description" data-i18n-attr="content:br.meta.description" content="Cybersecurity write-ups, incident analysis and platform news from Blindma1den Hack&amp;Code. No clickbait.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:title" content="Briefing — Blindma1den Hack&amp;Code">
+  <meta property="og:description" content="What happened, how it happened, and what to do about it.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/i18n.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/filter.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.png" width="141" height="41" alt="Blindma1den Hack&amp;Code — Home" data-i18n-attr="alt:nav.home">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"
+              data-i18n-attr="aria-label:nav.open" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" data-i18n-attr="aria-label:nav.label" aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="intelligence.html" data-i18n="nav.intelligence">Intelligence</a></li>
+          <li><a href="gauntlet.html" data-i18n="nav.gauntlet">The Gauntlet</a></li>
+          <li><a href="ctf.html" data-i18n="nav.ctf">CTF</a></li>
+          <li><a href="briefing.html" aria-current="page" data-i18n="nav.briefing">Briefing</a></li>
+          <li><a href="operations.html" data-i18n="nav.operations">Operations</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.label" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+          </div>
+          <a class="nav-login" href="login.html" data-i18n="nav.login">Log in</a>
+          <a class="btn btn-primary" href="signup.html" data-i18n="cta.initialize">Initialize Protocol</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero container" aria-labelledby="br-title">
+      <p class="eyebrow">Briefing</p>
+      <h1 class="page-title" id="br-title">
+        <span class="line" data-i18n="br.h1a">What happened, how it happened,</span>
+        <span class="line gradient-text" data-i18n="br.h1b">and what to do about it.</span>
+      </h1>
+      <p class="page-lead" data-i18n="br.lead">Write-ups, incident analysis and platform news. No clickbait, and no “top 10 hacking tools” lists.</p>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ FEATURED (placeholder) ============ -->
+    <section class="section container" aria-labelledby="featured-title">
+      <h2 class="sr-only" id="featured-title" data-i18n="br.featured">Featured</h2>
+      <article class="featured">
+        <div class="ph featured-ph" role="img" data-i18n-attr="aria-label:br.ph.cover" aria-label="Placeholder: post cover image">
+          <span class="ph-label">IMG · <span data-i18n="br.ph.coverShort">Post cover</span></span>
+        </div>
+        <div class="featured-body">
+          <ul class="tags"><li class="tag tag-blue" data-i18n="br.cat.incident">Incident analysis</li></ul>
+          <h3 class="featured-title"><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt: two or three lines on what the reader will learn.]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ POSTS ============ -->
+    <section class="section section-tight container" aria-labelledby="posts-title">
+      <div class="section-head">
+        <h2 class="h2" id="posts-title" data-i18n="br.posts.title">Latest</h2>
+      </div>
+
+      <div class="filters" role="group" data-i18n-attr="aria-label:br.filter.label" aria-label="Filter posts by category" hidden>
+        <button type="button" class="chip" data-filter="all" aria-pressed="true" data-i18n="gt.filter.all">All</button>
+        <button type="button" class="chip" data-filter="writeup" aria-pressed="false">Write-ups</button>
+        <button type="button" class="chip" data-filter="incident" aria-pressed="false" data-i18n="br.cat.incident">Incident analysis</button>
+        <button type="button" class="chip" data-filter="labs" aria-pressed="false" data-i18n="br.cat.labs">New labs</button>
+        <button type="button" class="chip" data-filter="community" aria-pressed="false" data-i18n="br.cat.community">Community</button>
+      </div>
+      <p class="sr-only" aria-live="polite" data-filter-status></p>
+
+      <ul class="post-grid">
+        <li class="post-card" data-filter-item data-tags="writeup">
+          <ul class="tags"><li class="tag tag-red">Write-up</li></ul>
+          <h3><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </li>
+        <li class="post-card" data-filter-item data-tags="incident">
+          <ul class="tags"><li class="tag tag-blue" data-i18n="br.cat.incident">Incident analysis</li></ul>
+          <h3><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </li>
+        <li class="post-card" data-filter-item data-tags="labs">
+          <ul class="tags"><li class="tag tag-purple" data-i18n="br.cat.labs">New labs</li></ul>
+          <h3><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </li>
+        <li class="post-card" data-filter-item data-tags="writeup">
+          <ul class="tags"><li class="tag tag-red">Write-up</li></ul>
+          <h3><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </li>
+        <li class="post-card" data-filter-item data-tags="community">
+          <ul class="tags"><li class="tag tag-grc" data-i18n="br.cat.community">Community</li></ul>
+          <h3><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </li>
+        <li class="post-card" data-filter-item data-tags="incident">
+          <ul class="tags"><li class="tag tag-blue" data-i18n="br.cat.incident">Incident analysis</li></ul>
+          <h3><a href="post.html" class="tbd">[POST TITLE]</a></h3>
+          <p class="tbd">[Short excerpt]</p>
+          <p class="post-meta"><span class="tbd">[DATE]</span> · <span class="tbd">[N]</span> <span data-i18n="br.min">min read</span></p>
+        </li>
+      </ul>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ WRITE FOR US ============ -->
+    <section class="section container split" aria-labelledby="write-title">
+      <h2 class="h2" id="write-title">
+        <span class="line" data-i18n="br.write.l1">Solved something hard?</span>
+        <span class="line text-lavender" data-i18n="br.write.l2">Write it up.</span>
+      </h2>
+      <div class="split-copy">
+        <p data-i18n="br.write.p1">We publish community write-ups from labs and CTFs. If you can explain it clearly, other people can learn from it, and recruiters can read it.</p>
+        <p data-i18n="br.write.p2">We review every submission for accuracy. We don’t publish write-ups of active CTF challenges or anything that targets real systems without permission.</p>
+        <p><a class="btn btn-ghost" href="contact.html?topic=writeup" data-i18n="br.write.cta">Submit a write-up</a></p>
+      </div>
+    </section>
+
+    <hr class="divider container">
+
+    <!-- ============ NEWSLETTER (Netlify Forms) ============ -->
+    <section class="section container newsletter" aria-labelledby="nl-title">
+      <div>
+        <h2 class="h2" id="nl-title" data-i18n="br.nl.title">The weekly briefing</h2>
+        <p class="section-sub" data-i18n="br.nl.p">New labs, the best write-ups and one incident worth understanding. Once a week, no spam.</p>
+      </div>
+
+      <!-- Netlify detects this form at deploy time. Submissions show up in
+           Netlify → Site → Forms. The hidden "bot-field" is a honeypot. -->
+      <form class="nl-form" name="newsletter" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <p class="sr-only">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+        </p>
+        <label class="field-label" for="nl-email" data-i18n="br.nl.label">Email</label>
+        <div class="nl-row">
+          <input class="input" id="nl-email" type="email" name="email" required autocomplete="email"
+                 placeholder="you@company.com" data-i18n-attr="placeholder:br.nl.placeholder">
+          <button class="btn btn-primary" type="submit" data-i18n="br.nl.submit">Subscribe</button>
+        </div>
+        <p class="field-help">
+          <span data-i18n="br.nl.privacy">We only use your email to send the briefing. Read our</span>
+          <a class="link-plain" href="privacy.html" data-i18n="br.nl.privacyLink">privacy policy</a>.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <hr class="divider">
+      <div class="footer-cols">
+        <nav aria-labelledby="f-company">
+          <h2 class="footer-title" id="f-company" data-i18n="f.company">Company</h2>
+          <ul>
+            <li><a href="about.html" data-i18n="f.about">About</a></li>
+            <li><a href="briefing.html" data-i18n="f.blog">Blog</a></li>
+            <li><a href="contact.html" data-i18n="f.contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-platform">
+          <h2 class="footer-title" id="f-platform" data-i18n="f.platform">Platform</h2>
+          <ul>
+            <li><a href="gauntlet.html#labs" data-i18n="f.labs">Labs</a></li>
+            <li><a href="gauntlet.html#paths" data-i18n="f.paths">Learning Paths</a></li>
+            <li><a href="resources.html" data-i18n="f.resources">Resources</a></li>
+          </ul>
+        </nav>
+        <nav aria-labelledby="f-legal">
+          <h2 class="footer-title" id="f-legal" data-i18n="f.legal">Legal</h2>
+          <ul>
+            <li><a href="privacy.html" data-i18n="f.privacy">Privacy Policy</a></li>
+            <li><a href="terms.html" data-i18n="f.terms">Terms of Service</a></li>
+            <li><a href="cookies.html" data-i18n="f.cookies">Cookie Policy</a></li>
+            <li><a href="security.html" data-i18n="f.whitepaper">Security Whitepaper</a></li>
+            <li><a href="disclosure.html" data-i18n="f.disclosure">Vulnerability Disclosure</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="copyright">© <span data-year>2026</span> Blindma1den Hack&amp;Code. <span data-i18n="f.rights">All rights reserved.</span></p>
+    </div>
+  </footer>
+</body>
+</html>
