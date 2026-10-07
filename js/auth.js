@@ -242,7 +242,18 @@
       if (password) { password.type = 'password'; } // never leave it visible / saved as text
       form.querySelectorAll('.pw-toggle').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', t('auth.show')); });
 
-      if (!BACKEND_READY) { setStatus(form, 'auth.demo', 'info'); return; }
+      if (!BACKEND_READY) {
+        // Demo mode: no backend exists yet, so nothing is sent anywhere.
+        // Access/Enlist validate locally and then let the visitor into the
+        // prototype platform. Reset and magic link keep the notice, because
+        // there is no email to send without a server.
+        if (kind === 'login' || kind === 'register') {
+          window.location.assign('app/index.html');
+          return;
+        }
+        setStatus(form, 'auth.demo', 'info');
+        return;
+      }
 
       busy(form, true);
       send(url, payload).then(function (r) {

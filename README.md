@@ -265,8 +265,11 @@ esencial:
 - Enlaces mágicos y de restablecimiento de un solo uso y con caducidad corta.
 - Ofrecer MFA (TOTP / passkeys) dentro de la plataforma.
 
-**`BACKEND_READY = false` en `auth.js`:** mientras sea `false`, los formularios
-no envían nada y muestran un aviso de "modo demo". Cámbialo a `true` cuando
+**`BACKEND_READY = false` en `auth.js`:** mientras sea `false`, no se envía
+nada a ningún lado: Access y Enlist validan los campos en el navegador y te
+dejan entrar a la plataforma (`app/index.html`) para poder recorrer el
+prototipo; restablecer contraseña y el magic link muestran el aviso de "modo
+demo", porque sin servidor no hay correo que mandar. Cámbialo a `true` cuando
 `/api/auth/*` exista.
 
 ### La plataforma debe protegerse en el servidor
