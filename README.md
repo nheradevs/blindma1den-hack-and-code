@@ -91,7 +91,8 @@ blindma1den-site/
 ├── post.html               Plantilla de artículo para Briefing (noindex)
 ├── login.html              Access — inicia sesión  (switch Access/Enlist)
 ├── signup.html             Enlist — registro       (misma página, otro panel)
-├── reset.html              Restablecer contraseña  (noindex)
+├── reset.html              Paso 1: pedir el enlace de restablecimiento (noindex)
+├── reset-password.html     Paso 2: elegir la contraseña nueva (noindex)
 ├── thanks.html             Página de gracias tras enviar formularios (noindex)
 ├── 404.html                Página de error
 │
@@ -120,6 +121,7 @@ blindma1den-site/
 │   ├── i18n-app.js         Traducciones ES de la plataforma
 │   ├── main.js             Idioma, menú móvil, evitar palabras huérfanas
 │   ├── auth.js             Login/registro/reset + switch Access/Enlist
+│   ├── reset-boot.js       Saca el token de reset de la URL antes que nada
 │   ├── contact.js          Preselección de tema en el formulario de contacto
 │   ├── filter.js           Filtro por chips (The Gauntlet, Briefing)
 │   └── app.js              Lógica de la plataforma (menú, pestañas, laboratorio…)
@@ -271,6 +273,53 @@ dejan entrar a la plataforma (`app/index.html`) para poder recorrer el
 prototipo; restablecer contraseña y el magic link muestran el aviso de "modo
 demo", porque sin servidor no hay correo que mandar. Cámbialo a `true` cuando
 `/api/auth/*` exista.
+
+### Recuperar contraseña (`reset.html` → `reset-password.html`)
+El flujo son dos pasos, como recomienda la
+[cheat sheet de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Forgot_Password_Cheat_Sheet.html):
+pedir el enlace y después elegir la contraseña nueva, con el token como prueba
+de identidad.
+
+**Paso 1 — `reset.html`.** El usuario escribe su correo y el servidor contesta
+siempre lo mismo, exista o no la cuenta. En el navegador:
+- mismo mensaje para todos los casos (`auth.ok.reset`);
+- límite de reenvío de 60 s por pestaña, con cuenta atrás en el botón;
+- un `429` muestra un aviso propio (`reset.rate`), no el mensaje de éxito;
+- slot de captcha para cuando el servidor lo pida;
+- sin bloqueo de cuenta: bloquearla convierte el formulario en un ataque de
+denegación de servicio contra usuarios conocidos.
+
+**Paso 2 — `reset-password.html`.** Tres estados excluyentes, sin recargar:
+
+| Estado | Cuándo | Qué se ve |
+| --- | --- | --- |
+| Formulario | Hay token | Contraseña nueva + repetición, medidor de fuerza, Caps Lock, toggle de ver |
+| Listo | El servidor aceptó el cambio | Confirmación, aviso de correo enviado, sesiones cerradas y botón a Access |
+| Enlace muerto | Token ausente, vencido o ya usado | Mensaje genérico (“este enlace ya no funciona”) y botón para pedir otro |
+
+Reglas que se sostienen en todos los estados:
+- la contraseña se escribe dos veces y sigue la misma política que el registro
+(12–128, espacios y símbolos, sin reglas de composición);
+- **no hay auto-login**: después del cambio se vuelve a Access;
+- nunca se dice si el enlace era de otro usuario, si venció o si ya se usó;
+- el token **se saca de la barra de direcciones** al cargar, antes de que corra
+cualquier otro script (`js/reset-boot.js`, sincrónico en el `<head>`), y queda
+en `sessionStorage`; las rutas de reset van con `Referrer-Policy: no-referrer`
+y `Cache-Control: no-store`;
+- sin preguntas de seguridad en ningún paso.
+
+**Demo:** con `BACKEND_READY = false` no hay servidor que guarde la contraseña.
+El paso 2 muestra el estado “listo” con el aviso de modo demo, para poder
+revisar el diseño, y nunca afirma que un cambio real haya ocurrido.
+
+**En el servidor falta** (está documentado al inicio de `js/auth.js`): token de
+32 bytes de un CSPRNG guardado como hash, ligado al usuario, de un solo uso y
+con vencimiento de 30 minutos; `POST /api/auth/reset/confirm`; correo de aviso
+del cambio; invalidación de todas las sesiones y de los demás tokens pendientes;
+límite de intentos también sobre el token. El enlace del correo debería ir a
+`/reset-password#token=…` (el fragmento no llega al servidor ni a los logs) o,
+mejor todavía, a un `POST /api/auth/reset/verify` que cambie el token por una
+cookie de sesión de reset de corta vida y redirija a una URL limpia.
 
 ### La plataforma debe protegerse en el servidor
 Las páginas de `/app/` son un prototipo estático. En producción, **cada una
