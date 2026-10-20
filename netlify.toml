@@ -40,3 +40,36 @@
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
     Cache-Control = "no-store"
+
+# Password reset: these URLs can carry a single-use token, so they get no-referrer
+# (the global policy is strict-origin-when-cross-origin, which still sends the full
+# path to same-origin subresources) and no-store (no shared cache keeps a tokenised
+# page). js/reset-boot.js also strips the token from the address bar on load.
+# Pretty URLs are on, so both the extensionless and the .html form are listed.
+[[headers]]
+  for = "/reset.html"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/reset-password.html"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/reset"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/reset-password"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
