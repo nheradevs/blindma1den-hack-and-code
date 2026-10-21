@@ -84,9 +84,29 @@ function createJsonStore(dataDir) {
   };
 }
 
+function codedError(code, cause) {
+  const err = new Error(code);
+  err.code = code;
+  if (cause) err.cause = cause;
+  return err;
+}
+
 async function createBlobsStore() {
-  const { getStore } = await import('@netlify/blobs');
-  const store = getStore({ name: 'bm-auth', consistency: 'strong' });
+  let getStore;
+  try {
+    ({ getStore } = await import('@netlify/blobs'));
+  } catch (err) {
+    // The package is not installed or not bundled into the function.
+    throw codedError('store_dependency_missing', err);
+  }
+
+  let store;
+  try {
+    store = getStore({ name: 'bm-auth', consistency: 'strong' });
+  } catch (err) {
+    // Package present, credentials missing: classic functions need connectLambda(event).
+    throw codedError('store_context_missing', err);
+  }
 
   async function read(key) {
     const record = await store.get(key, { type: 'json' });
