@@ -6,8 +6,9 @@
 
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { config } from '../config.mjs';
 
-export async function createStore({ mode = 'json', dataDir } = {}) {
+export async function createStore({ mode = 'json', dataDir = config.dataDir } = {}) {
   if (mode === 'blobs') return createBlobsStore();
   return createJsonStore(dataDir);
 }
