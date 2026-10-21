@@ -10,6 +10,7 @@
    POST /api/auth/login        { email, password }
    POST /api/auth/register     { email, password, plan }
    POST /api/auth/reset        { email }
+   POST /api/auth/reset/confirm { token, password }
    POST /api/auth/magic-link   { email }
 
    - Responses never reveal whether an email exists
@@ -29,6 +30,34 @@
      expiry, invalidated after password change.
    - Offer MFA (TOTP / passkeys) inside the platform.
    - Log auth events without logging passwords or tokens.
+
+   RESET FLOW (reset.html -> reset-password.html)
+   1. POST /api/auth/reset { email } answers 200 with the same
+      body for existing and non-existing accounts, in the same
+      amount of time (queue the mail, don't await it on one path
+      only), 429 when the per-IP/per-account limit is hit.
+   2. The mail carries HTTPS /reset-password#token=<token>:
+      32 random bytes from a CSPRNG, base64url. Store only its
+      hash, bound to the user, with created_at + expires_at.
+      The fragment form never reaches the server, so the token
+      stays out of access logs and Referer; js/reset-boot.js
+      moves it into sessionStorage and cleans the address bar
+      before any other script runs. On the server side, prefer
+      exchanging the token for a short-lived, scoped session
+      cookie (POST /api/auth/reset/verify) and redirect to a URL
+      with no token at all.
+   3. POST /api/auth/reset/confirm { token, password }: mark the
+      token used (single use), apply the same password policy and
+      hash as registration, reply 200, 400 on a weak password and
+      a generic 410/400 for expired, used or unknown tokens (never
+      say which, never say whose).
+   4. Then: send the notification email, invalidate every session
+      and every other outstanding reset token for that user, and
+      do NOT start a session here: the UI sends the user back to
+      Access to log in normally.
+   5. Rate limit the token endpoints too, and never lock the
+      account on reset requests (that turns the form into a
+      denial-of-service tool against known usernames).
    ========================================================= */
 (function () {
   'use strict';
@@ -49,6 +78,7 @@
     'auth.err.pwLong': 'Maximum 128 characters. Impressive, but no.',
     'auth.err.pwEmail': 'Your password can’t contain your email.',
     'auth.err.pwCommon': 'That one is on every attacker’s list. Pick another.',
+    'auth.err.pwMismatch': 'The two passwords don’t match.',
     'auth.err.generic': 'Something went wrong. Try again in a moment.',
     'auth.err.login': 'Email or password is incorrect.',
     'auth.pw.rule': 'At least 12 characters. Spaces and any symbol allowed. Long beats complex.',
@@ -62,13 +92,21 @@
     'auth.ok.reset': 'If there’s an account for that email, a reset link is on its way.',
     'auth.ok.magic': 'If there’s an account for that email, a magic link is on its way.',
     'auth.err.magicEmail': 'Enter your email above first, then ask for the magic link.',
-    'auth.demo': 'Demo mode: the authentication backend isn’t connected yet, so nothing was sent.'
+    'auth.demo': 'Demo mode: the authentication backend isn’t connected yet, so nothing was sent.',
+    'reset.rate': 'Too many requests from here. Wait a couple of minutes and try again.',
+    'reset.resend': 'Send another link',
+    'reset.resendWait': 'Send again in %ss'
   };
 
   function t(key) {
     var lang = document.documentElement.lang;
     var dict = window.BM_I18N && window.BM_I18N[lang];
     return (dict && dict[key]) || EN[key] || key;
+  }
+
+  // Translated text with one substituted value ("Send again in %ss" -> "... 45s").
+  function tf(key, value) {
+    return t(key).replace('%s', String(value));
   }
 
   // Tiny list of the most common passwords. The real check (breached lists) happens server-side.
@@ -120,8 +158,10 @@
     }
   }
 
-  function setStatus(form, key, kind) {
-    var el = form.querySelector('[data-status]');
+  // `root` is any element that contains a [data-status] region (a form, or a reset panel).
+  function setStatus(root, key, kind) {
+    if (!root) return;
+    var el = root.querySelector('[data-status]');
     if (!el) return;
     if (!key) { el.hidden = true; el.textContent = ''; el.removeAttribute('data-key'); return; }
     el.textContent = t(key);
@@ -210,13 +250,91 @@
     return { register: 'auth.ok.register', reset: 'auth.ok.reset', magic: 'auth.ok.magic' }[mode];
   }
 
+  /* ---------- Reset step 2 (/reset-password.html): token + outcome panels ---------- */
+  var TOKEN_KEY = 'bm-reset-token';
+  var PANEL_HEADINGS = { form: 'reset-form-h', done: 'reset-done-h', invalid: 'reset-invalid-h' };
+  var resetPanels = {
+    form: document.getElementById('panel-reset-form'),
+    done: document.getElementById('panel-reset-done'),
+    invalid: document.getElementById('panel-reset-invalid')
+  };
+
+  function readResetToken() {
+    try {
+      var stored = sessionStorage.getItem(TOKEN_KEY);
+      if (stored) return stored;
+    } catch (e) { /* storage blocked: fall through to the URL */ }
+    // js/reset-boot.js could not run or could not store it: read the URL as a last resort.
+    try { return new URLSearchParams(window.location.search).get('token') || ''; } catch (e) { return ''; }
+  }
+
+  function clearResetToken() {
+    try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) { /* ignore */ }
+  }
+
+  function showResetPanel(which, focus) {
+    if (!resetPanels.form) return;
+    Object.keys(resetPanels).forEach(function (k) {
+      if (resetPanels[k]) resetPanels[k].hidden = k !== which;
+    });
+    if (focus) {
+      var h = document.getElementById(PANEL_HEADINGS[which]);
+      if (h) h.focus();
+    }
+  }
+
+  // Landed on step 2 without a token: broken, expired or already used link.
+  if (resetPanels.form) showResetPanel(readResetToken() ? 'form' : 'invalid', false);
+
+  /* ---------- Resend cooldown (reset request form) ----------
+     One request per minute per browser tab. The real limit is server-side
+     (per IP and per account); this only stops double submits and gives the
+     user something to look at instead of a dead button. */
+  var RESEND_SECONDS = 60;
+
+  function startCooldown(form, seconds) {
+    var btn = form.querySelector('[data-submit]');
+    if (!btn) return;
+    if (form.__cooldown) clearInterval(form.__cooldown);
+    if (!btn.getAttribute('data-label')) btn.setAttribute('data-label', btn.textContent);
+    // Hand the label over to the countdown: main.js re-applies data-i18n texts on
+    // language change, which would otherwise overwrite it mid-count.
+    btn.removeAttribute('data-i18n');
+    var left = seconds || RESEND_SECONDS;
+
+    function paint() {
+      if (form.__cooldownLeft > 0) btn.textContent = tf('reset.resendWait', form.__cooldownLeft);
+      else btn.textContent = t('reset.resend');
+    }
+    function tick() {
+      form.__cooldownLeft = left;
+      if (left < 0) {
+        clearInterval(form.__cooldown);
+        form.__cooldown = null;
+        btn.disabled = false;
+        paint();
+        return;
+      }
+      btn.disabled = true;
+      paint();
+      left--;
+    }
+    form.__cooldownPaint = paint;
+    tick();
+    form.__cooldown = setInterval(tick, 1000);
+  }
+
   document.querySelectorAll('form[data-auth]').forEach(function (form) {
     var mode = form.getAttribute('data-auth');
     var email = form.querySelector('input[type="email"]');
     var password = form.querySelector('input[name="password"]');
+    var password2 = form.querySelector('input[name="password2"]');
+    // Setting a new password (register or reset step 2) applies the same policy;
+    // login never hints at password rules.
+    var policy = (mode === 'register' || mode === 'reset-confirm') ? 'register' : mode;
 
     // Clear an error as soon as the user fixes the field.
-    [email, password].forEach(function (input) {
+    [email, password, password2].forEach(function (input) {
       if (!input) return;
       input.addEventListener('input', function () {
         if (input.getAttribute('aria-invalid') === 'true') showError(input, null);
@@ -225,13 +343,22 @@
 
     function validate() {
       var first = null;
-      var eKey = emailError(email);
-      showError(email, eKey);
-      if (eKey) first = email;
+      if (email) {
+        var eKey = emailError(email);
+        showError(email, eKey);
+        if (eKey) first = email;
+      }
       if (password) {
-        var pKey = passwordError(password, mode, email.value);
+        var pKey = passwordError(password, policy, email ? email.value : '');
         showError(password, pKey);
         if (pKey && !first) first = password;
+      }
+      if (password2) {
+        // Two fields, one value: an empty or different repetition is a user error,
+        // never a hint about the account.
+        var cKey = !password2.value ? 'auth.err.pwRequired' : (password2.value !== password.value ? 'auth.err.pwMismatch' : null);
+        showError(password2, cKey);
+        if (cKey && !first) first = password2;
       }
       if (first) first.focus();
       return !first;
@@ -251,7 +378,19 @@
           window.location.assign('app/index.html');
           return;
         }
+        if (kind === 'reset-confirm') {
+          // No server to store the password: show the outcome panels with the demo
+          // notice on top, so the state is reviewable without ever claiming that a
+          // real change (or a real session invalidation) happened.
+          if (password) password.value = '';
+          if (password2) password2.value = '';
+          showResetPanel('done', true);
+          setStatus(resetPanels.done, 'auth.demo', 'info');
+          clearResetToken();
+          return;
+        }
         setStatus(form, 'auth.demo', 'info');
+        if (kind === 'reset') startCooldown(form);
         return;
       }
 
@@ -272,9 +411,33 @@
             password.value = '';
             password.focus();
           }
+        } else if (kind === 'reset-confirm') {
+          // 200 -> done. 400/410 (weak password, expired, used, unknown token) ->
+          // generic dead-end panel: the UI never says which case it was, or whose.
+          if (r.ok) {
+            if (password) password.value = '';
+            if (password2) password2.value = '';
+            showResetPanel('done', true);
+            clearResetToken();
+          } else if (r.status === 429) {
+            setStatus(form, 'reset.rate', 'error');
+          } else if (r.status >= 500) {
+            setStatus(form, 'auth.err.generic', 'error');
+          } else {
+            showResetPanel('invalid', true);
+            clearResetToken();
+          }
         } else {
-          // Register / reset / magic link: same answer whatever happened, to avoid account enumeration.
-          setStatus(form, r.status >= 500 ? 'auth.err.generic' : successKey(kind), r.status >= 500 ? 'error' : 'ok');
+          // Register / reset / magic link: same answer whatever happened, to avoid
+          // account enumeration. A 429 is a client-side limit, not an account fact,
+          // so it gets its own message.
+          if (r.status === 429) {
+            setStatus(form, kind === 'reset' ? 'reset.rate' : 'auth.err.generic', 'error');
+            if (kind === 'reset') startCooldown(form);
+          } else {
+            setStatus(form, r.status >= 500 ? 'auth.err.generic' : successKey(kind), r.status >= 500 ? 'error' : 'ok');
+            if (kind === 'reset' && r.status < 500) startCooldown(form);
+          }
           if (kind === 'register' && password) password.value = '';
         }
       }).catch(function () {
@@ -286,10 +449,17 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!validate()) return;
-      var payload = { email: email.value.trim() };
-      if (password) payload.password = password.value;
-      var plan = form.querySelector('[data-plan]');
-      if (plan && plan.value) payload.plan = plan.value;
+      var payload;
+      if (mode === 'reset-confirm') {
+        var token = readResetToken();
+        if (!token) { showResetPanel('invalid', true); return; }
+        payload = { token: token, password: password.value };
+      } else {
+        payload = { email: email.value.trim() };
+        if (password) payload.password = password.value;
+        var plan = form.querySelector('[data-plan]');
+        if (plan && plan.value) payload.plan = plan.value;
+      }
       submit(mode, form.getAttribute('action'), payload);
     });
 
@@ -396,6 +566,10 @@
     });
     document.querySelectorAll('.pw-toggle').forEach(function (b) {
       b.setAttribute('aria-label', t(b.getAttribute('aria-pressed') === 'true' ? 'auth.hide' : 'auth.show'));
+    });
+    // Countdown labels, and the heading of whichever reset panel is visible.
+    document.querySelectorAll('form[data-auth]').forEach(function (f) {
+      if (f.__cooldownPaint) f.__cooldownPaint();
     });
     updateMeter();
     if (card) document.title = viewTitle(currentView);
