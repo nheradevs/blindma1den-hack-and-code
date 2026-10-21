@@ -43,8 +43,16 @@ export const handler = async (event) => {
   const forwarded = String(headers['x-forwarded-for'] || '').split(',')[0].trim();
   const ip = headers['x-nf-client-connection-ip'] || forwarded || '0.0.0.0';
 
+  let api;
   try {
-    const api = await getApi();
+    api = await getApi();
+  } catch (err) {
+    // Most likely the Blobs dependency is missing (see netlify.toml build command).
+    console.error('[auth] no se pudo inicializar el store:', err && err.message);
+    return json(500, { ok: false, error: 'store_unavailable' });
+  }
+
+  try {
     const result = await api.handle({ method: event.httpMethod, path, body, ip, headers });
     return json(result.status, result.body, result.headers);
   } catch (err) {
