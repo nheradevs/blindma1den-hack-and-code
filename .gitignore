@@ -8,3 +8,6 @@ Thumbs.db
 # Local dev
 *.log
 node_modules/
+
+# Backend local: base de datos de prueba y correos capturados
+server/.data/
