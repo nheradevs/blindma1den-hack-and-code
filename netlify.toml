@@ -2,6 +2,14 @@
 [build]
   publish = "."
 
+# Auth API: same origin, so the browser keeps using /api/auth/* and nothing needs
+# CORS or a different CSP. The function lives in netlify/functions/auth.mjs.
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/auth/:splat"
+  status = 200
+  force = true
+
 # Security headers (it'd be awkward for a security platform to ship without them)
 [[headers]]
   for = "/*"
