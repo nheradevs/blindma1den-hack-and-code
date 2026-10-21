@@ -96,6 +96,13 @@ blindma1den-site/
 ├── thanks.html             Página de gracias tras enviar formularios (noindex)
 ├── 404.html                Página de error
 │
+├── server/                 Backend de auth (Node, sin dependencias)
+│   ├── index.mjs           Sitio + API en el mismo origen (dev)
+│   └── core/               handlers, crypto, store, mailer
+├── netlify/functions/      Función de Netlify (mismo código que server/)
+├── tests/                  Tests del backend con node:test
+├── package.json            Scripts y la única dependencia (@netlify/blobs)
+│
 ├── app/                    PLATAFORMA (tras el login) — toda noindex
 │   ├── index.html          Panel de inicio
 │   ├── terminal.html       Attack box
@@ -267,12 +274,13 @@ esencial:
 - Enlaces mágicos y de restablecimiento de un solo uso y con caducidad corta.
 - Ofrecer MFA (TOTP / passkeys) dentro de la plataforma.
 
-**`BACKEND_READY = false` en `auth.js`:** mientras sea `false`, no se envía
-nada a ningún lado: Access y Enlist validan los campos en el navegador y te
-dejan entrar a la plataforma (`app/index.html`) para poder recorrer el
-prototipo; restablecer contraseña y el magic link muestran el aviso de "modo
-demo", porque sin servidor no hay correo que mandar. Cámbialo a `true` cuando
-`/api/auth/*` exista.
+**Detección automática, no una bandera:** `auth.js` pregunta una sola vez a
+`GET /api/health`. Si contesta, los formularios hablan con el backend real; si
+no (sitio estático abierto con `python3 -m http.server`, o deploy sin la
+función), todo sigue en modo demo: los formularios validan en el navegador,
+Access y Enlist dejan entrar al prototipo y los enlaces muestran el aviso de
+"modo demo" porque no hay correo que mandar. Nunca hay que cambiar una
+constante para pasar de un mundo al otro.
 
 ### Recuperar contraseña (`reset.html` → `reset-password.html`)
 El flujo son dos pasos, como recomienda la
@@ -308,9 +316,9 @@ en `sessionStorage`; las rutas de reset van con `Referrer-Policy: no-referrer`
 y `Cache-Control: no-store`;
 - sin preguntas de seguridad en ningún paso.
 
-**Demo:** con `BACKEND_READY = false` no hay servidor que guarde la contraseña.
-El paso 2 muestra el estado “listo” con el aviso de modo demo, para poder
-revisar el diseño, y nunca afirma que un cambio real haya ocurrido.
+**Demo:** si no hay backend contestando `/api/health`, el paso 2 muestra el
+estado “listo” con el aviso de modo demo, para poder revisar el diseño, y nunca
+afirma que un cambio real haya ocurrido.
 
 **En el servidor falta** (está documentado al inicio de `js/auth.js`): token de
 32 bytes de un CSPRNG guardado como hash, ligado al usuario, de un solo uso y
@@ -320,6 +328,63 @@ límite de intentos también sobre el token. El enlace del correo debería ir a
 `/reset-password#token=…` (el fragmento no llega al servidor ni a los logs) o,
 mejor todavía, a un `POST /api/auth/reset/verify` que cambie el token por una
 cookie de sesión de reset de corta vida y redirija a una URL limpia.
+
+### Backend de autenticación (local y Netlify)
+`server/` responde `/api/auth/*` con el mismo código que corre como función en
+Netlify, así que lo que probás en tu máquina es lo que se despliega. Sin
+frameworks y sin dependencias nuevas: `node:crypto` hace scrypt y los tokens,
+un archivo JSON hace de base de datos local y Netlify Blobs la de producción.
+
+| Archivo | Qué hace |
+| --- | --- |
+| `server/index.mjs` | Sirve el sitio **y** la API en el mismo origen, con las mismas cabeceras que `netlify.toml` |
+| `server/core/handlers.mjs` | Registro, login, reset, confirm: las reglas de seguridad viven acá |
+| `server/core/crypto.mjs` | scrypt para contraseñas, tokens aleatorios de 32 bytes, guardados como hash |
+| `server/core/store.mjs` | Almacenamiento: JSON local o Netlify Blobs |
+| `server/core/mailer.mjs` | Correos: a un log local, o a Resend en producción |
+| `netlify/functions/auth.mjs` | Adaptador de la función; el redirect mantiene `/api/auth/*` en el mismo origen |
+| `tests/` | 16 casos con `node:test`, sin dependencias |
+
+**En local:**
+
+```bash
+node server/index.mjs        # http://localhost:8080 (sitio + API)
+npm test                     # 16 casos: enumeración, token de un solo uso,
+                             # vencimiento, rate limit, login y hashing
+```
+
+Los correos quedan en `server/.data/mail.log` y también en la consola: abrís el
+link de ahí y seguís el flujo completo sin proveedor. La base local es
+`server/.data/db.json` (ignorada por git).
+
+**En Netlify** (el sitio sigue sin build; solo se despliega la función):
+
+| Variable | Valor |
+| --- | --- |
+| `PUBLIC_BASE_URL` | `https://tu-sitio.netlify.app` — el link del correo se arma con esto, nunca con el header `Host` |
+| `MAIL_MODE` | `resend` |
+| `RESEND_API_KEY` | la del panel de Resend |
+| `MAIL_FROM` | remitente verificado, p. ej. `Blindma1den <no-reply@tudominio.com>` |
+| `AUTH_STORE` | `blobs` (ya es el valor por defecto en la función) |
+
+Opcionales: `AUTH_TOKEN_TTL_SECONDS` (30 min), `AUTH_RATE_RESET_MAX`,
+`AUTH_RATE_ACCOUNT_MAX`, `AUTH_RATE_CONFIRM_MAX`, `AUTH_RATE_WINDOW_SECONDS`.
+
+**Implementado:** registro sin enumeración, login con cookie `HttpOnly`,
+reset de un solo uso con token hasheado, vencimiento, invalidación del token
+anterior y de todas las sesiones, límites por IP y por cuenta sin bloquear la
+cuenta, correo de aviso al cambiar la contraseña, y tests que lo cubren.
+
+**Pendiente (documentado, no simulado):**
+- **Magic link**: el endpoint responde genérico pero no envía nada.
+- **`/app/*` sigue siendo estático y sin protección en el servidor.**
+- **Resend en modo test** solo entrega a tu propio correo hasta que verifiques
+  un dominio; para que el equipo reciba links, verificá el dominio.
+- **Rate limit en Blobs**: leer-y-escribir no es atómico. El límite real en
+  producción son las reglas de tráfico de Netlify.
+- **Tiempos**: la respuesta es la misma para cuenta existente e inexistente,
+  pero el envío del correo mete una diferencia. La solución es encolar el
+  envío; acá el envío se espera y está anotado.
 
 ### La plataforma debe protegerse en el servidor
 Las páginas de `/app/` son un prototipo estático. En producción, **cada una
