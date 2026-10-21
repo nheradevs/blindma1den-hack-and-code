@@ -6,6 +6,20 @@
 import { createApi } from '../../server/core/handlers.mjs';
 import { createStore } from '../../server/core/store.mjs';
 
+/* Classic (v1) functions receive Blobs credentials in `event.blobs`, base64
+   encoded, and they must be handed to the library explicitly. Function v2 does
+   it automatically; v1 does not, and getStore() then throws "The environment
+   has not been configured to use Netlify Blobs". */
+async function connectBlobs(event) {
+  if (!event || !event.blobs) return;
+  try {
+    const { connectLambda } = await import('@netlify/blobs');
+    connectLambda(event);
+  } catch (err) {
+    console.error('[auth] no se pudo conectar el contexto de Blobs:', err && err.message);
+  }
+}
+
 const PREFIX = '/.netlify/functions/auth';
 
 let apiPromise = null;
@@ -28,6 +42,8 @@ function apiPath(rawPath) {
 }
 
 export const handler = async (event) => {
+  await connectBlobs(event);
+
   const path = apiPath(event.path);
   const headers = event.headers || {};
 
@@ -47,9 +63,8 @@ export const handler = async (event) => {
   try {
     api = await getApi();
   } catch (err) {
-    // Most likely the Blobs dependency is missing (see netlify.toml build command).
-    console.error('[auth] no se pudo inicializar el store:', err && err.message);
-    return json(500, { ok: false, error: 'store_unavailable' });
+    console.error('[auth] no se pudo inicializar el store:', err && err.code, err && err.message);
+    return json(500, { ok: false, error: (err && err.code) || 'store_unavailable' });
   }
 
   try {
