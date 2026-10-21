@@ -62,8 +62,12 @@
 (function () {
   'use strict';
 
-  // Set to true once /api/auth/* exists. While false, nothing is sent anywhere.
-  var BACKEND_READY = false;
+  // The site has to work with and without a backend. Instead of a hardcoded flag,
+  // ask once: if /api/health answers, the real endpoints are there; otherwise every
+  // form keeps the demo behaviour (nothing is sent anywhere).
+  var backendReady = fetch('/api/health', { credentials: 'same-origin', cache: 'no-store' })
+    .then(function (res) { return res.ok; })
+    .catch(function () { return false; });
 
   var MIN_PW = 12;
   var MAX_PW = 128;
@@ -369,81 +373,84 @@
       if (password) { password.type = 'password'; } // never leave it visible / saved as text
       form.querySelectorAll('.pw-toggle').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); b.setAttribute('aria-label', t('auth.show')); });
 
-      if (!BACKEND_READY) {
-        // Demo mode: no backend exists yet, so nothing is sent anywhere.
-        // Access/Enlist validate locally and then let the visitor into the
-        // prototype platform. Reset and magic link keep the notice, because
-        // there is no email to send without a server.
-        if (kind === 'login' || kind === 'register') {
-          window.location.assign('app/index.html');
-          return;
-        }
-        if (kind === 'reset-confirm') {
-          // No server to store the password: show the outcome panels with the demo
-          // notice on top, so the state is reviewable without ever claiming that a
-          // real change (or a real session invalidation) happened.
-          if (password) password.value = '';
-          if (password2) password2.value = '';
-          showResetPanel('done', true);
-          setStatus(resetPanels.done, 'auth.demo', 'info');
-          clearResetToken();
-          return;
-        }
-        setStatus(form, 'auth.demo', 'info');
-        if (kind === 'reset') startCooldown(form);
-        return;
-      }
-
-      busy(form, true);
-      send(url, payload).then(function (r) {
-        busy(form, false);
-        if (r.data && r.data.captcha) {
-          var slot = form.querySelector('[data-captcha]');
-          if (slot) slot.hidden = false; // the bot-check widget mounts here
-        }
-        if (kind === 'login') {
-          if (r.ok && r.data.redirect && r.data.redirect.charAt(0) === '/' && r.data.redirect.charAt(1) !== '/') {
-            window.location.assign(r.data.redirect); // same-origin paths only (no open redirect)
-          } else if (r.ok) {
-            window.location.assign('/app/');
-          } else {
-            setStatus(form, r.status === 429 ? 'auth.err.generic' : 'auth.err.login', 'error');
-            password.value = '';
-            password.focus();
+      function run(ready) {
+        if (!ready) {
+          // Demo mode: no backend exists yet, so nothing is sent anywhere.
+          // Access/Enlist validate locally and then let the visitor into the
+          // prototype platform. Reset and magic link keep the notice, because
+          // there is no email to send without a server.
+          if (kind === 'login' || kind === 'register') {
+            window.location.assign('app/index.html');
+            return;
           }
-        } else if (kind === 'reset-confirm') {
-          // 200 -> done. 400/410 (weak password, expired, used, unknown token) ->
-          // generic dead-end panel: the UI never says which case it was, or whose.
-          if (r.ok) {
+          if (kind === 'reset-confirm') {
+            // No server to store the password: show the outcome panels with the demo
+            // notice on top, so the state is reviewable without ever claiming that a
+            // real change (or a real session invalidation) happened.
             if (password) password.value = '';
             if (password2) password2.value = '';
             showResetPanel('done', true);
+            setStatus(resetPanels.done, 'auth.demo', 'info');
             clearResetToken();
-          } else if (r.status === 429) {
-            setStatus(form, 'reset.rate', 'error');
-          } else if (r.status >= 500) {
-            setStatus(form, 'auth.err.generic', 'error');
-          } else {
-            showResetPanel('invalid', true);
-            clearResetToken();
+            return;
           }
-        } else {
-          // Register / reset / magic link: same answer whatever happened, to avoid
-          // account enumeration. A 429 is a client-side limit, not an account fact,
-          // so it gets its own message.
-          if (r.status === 429) {
-            setStatus(form, kind === 'reset' ? 'reset.rate' : 'auth.err.generic', 'error');
-            if (kind === 'reset') startCooldown(form);
-          } else {
-            setStatus(form, r.status >= 500 ? 'auth.err.generic' : successKey(kind), r.status >= 500 ? 'error' : 'ok');
-            if (kind === 'reset' && r.status < 500) startCooldown(form);
-          }
-          if (kind === 'register' && password) password.value = '';
+          setStatus(form, 'auth.demo', 'info');
+          if (kind === 'reset') startCooldown(form);
+          return;
         }
-      }).catch(function () {
-        busy(form, false);
-        setStatus(form, 'auth.err.generic', 'error');
-      });
+
+        busy(form, true);
+        send(url, payload).then(function (r) {
+          busy(form, false);
+          if (r.data && r.data.captcha) {
+            var slot = form.querySelector('[data-captcha]');
+            if (slot) slot.hidden = false; // the bot-check widget mounts here
+          }
+          if (kind === 'login') {
+            if (r.ok && r.data.redirect && r.data.redirect.charAt(0) === '/' && r.data.redirect.charAt(1) !== '/') {
+              window.location.assign(r.data.redirect); // same-origin paths only (no open redirect)
+            } else if (r.ok) {
+              window.location.assign('/app/');
+            } else {
+              setStatus(form, r.status === 429 ? 'auth.err.generic' : 'auth.err.login', 'error');
+              password.value = '';
+              password.focus();
+            }
+          } else if (kind === 'reset-confirm') {
+            // 200 -> done. 400/410 (weak password, expired, used, unknown token) ->
+            // generic dead-end panel: the UI never says which case it was, or whose.
+            if (r.ok) {
+              if (password) password.value = '';
+              if (password2) password2.value = '';
+              showResetPanel('done', true);
+              clearResetToken();
+            } else if (r.status === 429) {
+              setStatus(form, 'reset.rate', 'error');
+            } else if (r.status >= 500) {
+              setStatus(form, 'auth.err.generic', 'error');
+            } else {
+              showResetPanel('invalid', true);
+              clearResetToken();
+            }
+          } else {
+            // Register / reset / magic link: same answer whatever happened, to avoid
+            // account enumeration. A 429 is a client-side limit, not an account fact,
+            // so it gets its own message.
+            if (r.status === 429) {
+              setStatus(form, kind === 'reset' ? 'reset.rate' : 'auth.err.generic', 'error');
+              if (kind === 'reset') startCooldown(form);
+            } else {
+              setStatus(form, r.status >= 500 ? 'auth.err.generic' : successKey(kind), r.status >= 500 ? 'error' : 'ok');
+              if (kind === 'reset' && r.status < 500) startCooldown(form);
+            }
+            if (kind === 'register' && password) password.value = '';
+          }
+        }).catch(function () {
+          busy(form, false);
+          setStatus(form, 'auth.err.generic', 'error');
+        });
+      }
+      backendReady.then(run);
     }
 
     form.addEventListener('submit', function (e) {
