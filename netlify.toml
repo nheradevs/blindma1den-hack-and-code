@@ -14,15 +14,20 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
     Cross-Origin-Opener-Policy = "same-origin"
 
+# CSS and JS are the files that change with every deploy, and there is no build
+# step to add a content hash to their names. With max-age=3600 a browser kept the
+# old stylesheet for an hour after a deploy and showed the previous design. They
+# are now revalidated on every load: the ETag makes that a 304 and the change
+# shows up immediately. Fonts never change, so they stay immutable for a year.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "no-cache"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "no-cache"
 
 [[headers]]
   for = "/assets/fonts/*"
