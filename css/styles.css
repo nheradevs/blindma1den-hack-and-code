@@ -740,22 +740,14 @@ select.input {
 
 /* ---------- Card ---------- */
 .auth-card {
-  position: relative; isolation: isolate; overflow: hidden;
+  position: relative; overflow: hidden;
   width: 100%; max-width: 34rem; justify-self: center;
   padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 8vw, 5.5rem);
   border-radius: 10px;
-  background:
-    radial-gradient(60% 45% at 85% 100%, rgba(214, 28, 118, .75), transparent 70%),
-    radial-gradient(40% 50% at 5% 85%, rgba(170, 20, 90, .7), transparent 70%),
-    radial-gradient(70% 55% at 75% 45%, rgba(48, 22, 210, .75), transparent 70%),
-    radial-gradient(50% 40% at 30% 70%, rgba(90, 20, 170, .6), transparent 70%),
-    linear-gradient(118deg, #050509 0%, #050509 28%, rgba(150, 25, 95, .75) 36%, rgba(40, 20, 120, .5) 44%, transparent 60%),
-    #0b0820;
-}
-/* Film grain (inline SVG noise, allowed by CSP img-src data:) */
-.auth-card::before {
-  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .22; mix-blend-mode: overlay; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Flat surface, one step above the page: the gradients and the grain behind the
+     form fought with the text. Contrast of every text colour is checked against
+     --bg-elevated, not against a moving background. */
+  background: var(--bg-elevated);
 }
 
 .auth-form { display: grid; gap: 1.5rem; }
@@ -833,15 +825,9 @@ select.input {
 .auth-perks li { position: relative; padding-left: 1.5rem; }
 .auth-perks li::before { content: ""; position: absolute; left: .1rem; top: .45em; width: .75rem; height: .4rem; border-left: 2px solid var(--cyan); border-bottom: 2px solid var(--cyan); transform: rotate(-45deg); }
 
-/* Enlist gets its own look: teal light from the left, cyan top edge */
+/* Enlist keeps its cyan top edge; the background is the same flat surface as Access. */
 .auth-card.is-register {
   box-shadow: inset 0 3px 0 0 var(--cyan);
-  background:
-    radial-gradient(55% 45% at 10% 100%, rgba(18, 140, 150, .7), transparent 70%),
-    radial-gradient(45% 40% at 95% 90%, rgba(150, 25, 120, .6), transparent 70%),
-    radial-gradient(70% 55% at 60% 40%, rgba(60, 25, 210, .7), transparent 70%),
-    linear-gradient(242deg, #050509 0%, #050509 28%, rgba(20, 120, 135, .6) 36%, rgba(40, 20, 120, .5) 46%, transparent 62%),
-    #08111c;
 }
 .auth-card.is-login { box-shadow: inset 0 3px 0 0 #2a2ae6; }
 
