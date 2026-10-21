@@ -1,6 +1,10 @@
 # Static site: no build step. Netlify serves the repo root as-is.
 [build]
   publish = "."
+  # La función importa @netlify/blobs. Sin build command, Netlify no instala las
+  # dependencias y la función falla al arrancar con 'store_unavailable'.
+  # El sitio sigue siendo estático: esto solo instala node_modules.
+  command = "npm install --no-audit --no-fund"
 
 # Auth API: same origin, so the browser keeps using /api/auth/* and nothing needs
 # CORS or a different CSP. The function lives in netlify/functions/auth.mjs.
