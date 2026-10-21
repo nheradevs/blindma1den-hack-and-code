@@ -14,6 +14,8 @@ import { config } from '../config.mjs';
    /api/auth/reset and the user reads "a link is on its way" while nothing is
    sent. The endpoint asks this first and refuses instead of lying. */
 export function mailAvailable() {
+  // No public base URL means the link would point to localhost.
+  if (config.serverless && !config.publicBaseUrlConfigured) return false;
   if (config.mailMode === 'resend') return Boolean(config.resendApiKey);
   // log mode: useful locally (mail.log), useless on a serverless runtime.
   return !config.serverless;

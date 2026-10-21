@@ -3,6 +3,19 @@
 
 import { fileURLToPath } from 'node:url';
 
+/* Netlify bundles the function to CommonJS, where import.meta.url does not
+   exist. Resolving it at import time crashed the whole function with
+   'TypeError: Invalid URL' before any handler ran. The file store is not used
+   there (Blobs is), but the module still has to load. */
+export function resolveDataDir(moduleUrl) {
+  try {
+    if (!moduleUrl) throw new Error('no module url');
+    return fileURLToPath(new URL('./.data/', moduleUrl));
+  } catch {
+    return './.data';
+  }
+}
+
 function num(value, fallback) {
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
@@ -10,7 +23,7 @@ function num(value, fallback) {
 
 export const config = {
   port: num(process.env.PORT, 8080),
-  dataDir: process.env.AUTH_DATA_DIR || fileURLToPath(new URL('./.data/', import.meta.url)),
+  dataDir: process.env.AUTH_DATA_DIR || resolveDataDir(import.meta && import.meta.url),
 
   // 'json' locally, 'blobs' inside Netlify Functions.
   storeMode: (process.env.AUTH_STORE || 'json').toLowerCase(),
@@ -29,6 +42,9 @@ export const config = {
   // The base URL is fixed on purpose: building it from the Host header is how
   // reset links get poisoned (Host header injection).
   publicBaseUrl: (process.env.PUBLIC_BASE_URL || 'http://localhost:8080').replace(/\/+$/, ''),
+  // A localhost link in a mail is a dead link: without an explicit base URL a
+  // serverless deployment cannot promise a working reset.
+  publicBaseUrlConfigured: Boolean(process.env.PUBLIC_BASE_URL),
 
   mailMode: (process.env.MAIL_MODE || 'log').toLowerCase(),
   resendApiKey: process.env.RESEND_API_KEY || '',
