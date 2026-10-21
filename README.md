@@ -375,6 +375,14 @@ reset de un solo uso con token hasheado, vencimiento, invalidación del token
 anterior y de todas las sesiones, límites por IP y por cuenta sin bloquear la
 cuenta, correo de aviso al cambiar la contraseña, y tests que lo cubren.
 
+**Sin transporte de correo el reset no miente:** si `MAIL_MODE=resend` no tiene
+`RESEND_API_KEY` (o si el modo `log` corre en un runtime serverless, donde no hay
+archivo que leer), `/api/health` responde `mail: false`, `/api/auth/reset`
+contesta `503 mail_unavailable` —igual para una cuenta existente y para una
+inventada, así no enumera— y la página de reset muestra el aviso antes de que
+escribas nada. Con eso el orden del deploy deja de importar: podés mergear antes
+de cargar las variables y el sitio queda honesto, no roto.
+
 **Pendiente (documentado, no simulado):**
 - **Magic link**: el endpoint responde genérico pero no envía nada.
 - **`/app/*` sigue siendo estático y sin protección en el servidor.**

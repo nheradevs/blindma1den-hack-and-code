@@ -9,13 +9,14 @@
 
 import { config } from '../config.mjs';
 import { emailKey, hashPassword, newToken, tokenHash, verifyPassword } from './crypto.mjs';
-import { sendMail } from './mailer.mjs';
+import { mailAvailable, sendMail } from './mailer.mjs';
 
 const OK = { ok: true };
 const WEAK = { ok: false, error: 'weak_password' };
 const INVALID_TOKEN = { ok: false, error: 'invalid_token' };
 const BAD_CREDENTIALS = { ok: false, error: 'invalid_credentials' };
 const RATE_LIMITED = { ok: false, error: 'rate_limited' };
+const MAIL_UNAVAILABLE = { ok: false, error: 'mail_unavailable' };
 
 const COMMON = ['password', 'passw0rd', 'qwerty', '123456', 'letmein', 'welcome', 'admin', 'iloveyou', 'blindma1den', 'hackandcode'];
 const PLANS = ['recruit', 'operator', 'squad'];
@@ -103,6 +104,10 @@ export function createApi({ store }) {
   }
 
   async function resetRequest({ body, ip }) {
+    // Refuse before touching any state: a global 503 leaks nothing about the
+    // account and stops the UI from promising a link it cannot send.
+    if (!mailAvailable()) return reply(503, MAIL_UNAVAILABLE, { 'Retry-After': '300' });
+
     if (await limited('rl:reset:ip:' + ip, config.rateResetPerIp)) {
       return reply(429, RATE_LIMITED, { 'Retry-After': String(config.rateWindowSeconds) });
     }
@@ -198,7 +203,9 @@ export function createApi({ store }) {
     const route = String(path || '').split('?')[0];
 
     if (route === '/api/health' && method === 'GET') {
-      return reply(200, { ok: true, backend: 'local' });
+      // `mail` is a capability, not a promise: the frontend uses it to decide
+      // whether the reset flow can be offered at all.
+      return reply(200, { ok: true, backend: 'local', mail: mailAvailable() });
     }
     if (method !== 'POST') return reply(405, { ok: false, error: 'method_not_allowed' });
 

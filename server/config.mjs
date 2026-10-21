@@ -32,6 +32,10 @@ export const config = {
 
   mailMode: (process.env.MAIL_MODE || 'log').toLowerCase(),
   resendApiKey: process.env.RESEND_API_KEY || '',
+  // 'log' is a local convenience (mail.log you can open). On a serverless
+  // runtime there is no file to read afterwards, so log mode there means the
+  // mail silently goes nowhere: it must not count as available.
+  serverless: Boolean(process.env.NETLIFY || process.env.LAMBDA_TASK_ROOT || process.env.AWS_LAMBDA_FUNCTION_NAME),
   mailFrom: process.env.MAIL_FROM || 'Blindma1den Hack&Code <onboarding@resend.dev>',
 
   // Cookies get Secure unless we are explicitly running plain-http localhost.

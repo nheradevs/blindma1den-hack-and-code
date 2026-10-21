@@ -65,9 +65,16 @@
   // The site has to work with and without a backend. Instead of a hardcoded flag,
   // ask once: if /api/health answers, the real endpoints are there; otherwise every
   // form keeps the demo behaviour (nothing is sent anywhere).
-  var backendReady = fetch('/api/health', { credentials: 'same-origin', cache: 'no-store' })
-    .then(function (res) { return res.ok; })
-    .catch(function () { return false; });
+  // The backend also reports whether it can deliver mail: a deployment without
+  // RESEND_API_KEY must not promise a reset link it cannot send.
+  var backendState = fetch('/api/health', { credentials: 'same-origin', cache: 'no-store' })
+    .then(function (res) {
+      if (!res.ok) return { ready: false, mail: false };
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        return { ready: data.ok === true, mail: data.mail !== false };
+      });
+    })
+    .catch(function () { return { ready: false, mail: false }; });
 
   var MIN_PW = 12;
   var MAX_PW = 128;
@@ -99,7 +106,8 @@
     'auth.demo': 'Demo mode: the authentication backend isn’t connected yet, so nothing was sent.',
     'reset.rate': 'Too many requests from here. Wait a couple of minutes and try again.',
     'reset.resend': 'Send another link',
-    'reset.resendWait': 'Send again in %ss'
+    'reset.resendWait': 'Send again in %ss',
+    'reset.unavailable': 'Password reset is unavailable right now. Try again later or contact us.'
   };
 
   function t(key) {
@@ -436,7 +444,10 @@
             // Register / reset / magic link: same answer whatever happened, to avoid
             // account enumeration. A 429 is a client-side limit, not an account fact,
             // so it gets its own message.
-            if (r.status === 429) {
+            if (r.status === 503) {
+              // Mail is not configured on the server: say so instead of "on its way".
+              setStatus(form, kind === 'reset' ? 'reset.unavailable' : 'auth.err.generic', 'error');
+            } else if (r.status === 429) {
               setStatus(form, kind === 'reset' ? 'reset.rate' : 'auth.err.generic', 'error');
               if (kind === 'reset') startCooldown(form);
             } else {
@@ -450,7 +461,7 @@
           setStatus(form, 'auth.err.generic', 'error');
         });
       }
-      backendReady.then(run);
+      backendState.then(function (state) { run(state.ready); });
     }
 
     form.addEventListener('submit', function (e) {
@@ -469,6 +480,13 @@
       }
       submit(mode, form.getAttribute('action'), payload);
     });
+
+    // /reset: if the backend answers but has no mail transport, say it up front.
+    if (mode === 'reset') {
+      backendState.then(function (state) {
+        if (state.ready && !state.mail) setStatus(form, 'reset.unavailable', 'error');
+      });
+    }
 
     var magic = form.querySelector('[data-magic]');
     if (magic) {

@@ -9,6 +9,16 @@ import { appendFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { config } from '../config.mjs';
 
+/* Can this deployment actually deliver a reset link?
+   Without this, a function deployed before RESEND_API_KEY exists answers 200 to
+   /api/auth/reset and the user reads "a link is on its way" while nothing is
+   sent. The endpoint asks this first and refuses instead of lying. */
+export function mailAvailable() {
+  if (config.mailMode === 'resend') return Boolean(config.resendApiKey);
+  // log mode: useful locally (mail.log), useless on a serverless runtime.
+  return !config.serverless;
+}
+
 export async function sendMail({ to, subject, text }) {
   if (config.mailMode === 'resend') return sendWithResend({ to, subject, text });
   return sendToLog({ to, subject, text });

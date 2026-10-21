@@ -159,17 +159,30 @@ function serveStatic(req, res, url) {
     return sendJson(res, 404, { ok: false, error: 'not_found' });
   }
 
+  let filePath = full;
   let stats;
   try {
-    stats = statSync(full);
+    stats = statSync(filePath);
     if (stats.isDirectory()) {
-      stats = statSync(resolve(full, 'index.html'));
+      filePath = resolve(filePath, 'index.html');
+      stats = statSync(filePath);
     }
   } catch {
-    return sendJson(res, 404, { ok: false, error: 'not_found' });
+    // Netlify resolves /reset to /reset.html (pretty URLs). Match that locally so
+    // the links in the README and in emails behave the same in both places.
+    if (!extname(full)) {
+      try {
+        filePath = full + '.html';
+        stats = statSync(filePath);
+      } catch {
+        return sendJson(res, 404, { ok: false, error: 'not_found' });
+      }
+    } else {
+      return sendJson(res, 404, { ok: false, error: 'not_found' });
+    }
   }
 
-  const type = TYPES[extname(full).toLowerCase()] || 'application/octet-stream';
+  const type = TYPES[extname(filePath).toLowerCase()] || 'application/octet-stream';
   res.writeHead(200, {
     ...SECURITY_HEADERS,
     'Content-Type': type,
@@ -177,7 +190,7 @@ function serveStatic(req, res, url) {
     'Cache-Control': type.startsWith('text/html') ? 'no-store' : 'public, max-age=60'
   });
   if (req.method === 'HEAD') return res.end();
-  createReadStream(stats.isDirectory() ? resolve(full, 'index.html') : full).pipe(res);
+  createReadStream(filePath).pipe(res);
 }
 
 const invokedDirectly = process.argv[1] && resolve(process.argv[1]) === SELF;

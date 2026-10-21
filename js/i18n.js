@@ -618,6 +618,7 @@ window.BM_I18N = {
     "reset.rate": "Demasiadas solicitudes desde acá. Espera un par de minutos e inténtalo de nuevo.",
     "reset.resend": "Enviar otro enlace",
     "reset.resendWait": "Enviar de nuevo en %ss",
+    "reset.unavailable": "El restablecimiento no está disponible en este momento. Inténtalo más tarde o escríbenos.",
     "rp.meta.title": "Establecer contraseña nueva — Blindma1den Hack&Code",
     "rp.meta.description": "Elige una contraseña nueva para tu cuenta de Blindma1den Hack&Code.",
     "rp.h1": "Llaves nuevas.",
